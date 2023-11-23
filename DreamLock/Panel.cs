@@ -15,8 +15,8 @@ namespace DreamLock
 {
     public partial class Panel : Form
     {
-        private string selectedFileName;
-        private string safeSelectedFileName;
+        private string selectedFileName="";
+        private string safeSelectedFileName="";
         public Panel()
         {
             InitializeComponent();

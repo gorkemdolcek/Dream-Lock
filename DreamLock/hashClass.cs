@@ -96,7 +96,7 @@ namespace DreamLock
                     return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
             }
-            return null;
+            return "0";
         }
 
         public string CalculateWhirlPoolofFile(string filePath)
@@ -107,7 +107,6 @@ namespace DreamLock
                 HashResult r = hasher.ComputeStream(stream);
                 return r.ToString().Replace("-", "").ToLowerInvariant();
             }
-            return null;
         }
         public string CalculateRIPEMDofFile(string filePath, int hashType)
         {
@@ -147,7 +146,7 @@ namespace DreamLock
                     return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
             }
-            return null;
+            return "0";
         }
         public string outputText = "";
         public string hashAll(string selectedFileName, string safeSelectedFileName)

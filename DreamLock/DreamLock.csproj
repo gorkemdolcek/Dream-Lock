@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.2.1" />
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="HashLib" Version="2.0.1" />
   </ItemGroup>
 
