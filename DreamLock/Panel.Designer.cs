@@ -59,14 +59,10 @@
             button2 = new Button();
             hashItButton = new Button();
             label3 = new Label();
-            label7 = new Label();
-            button6 = new Button();
             button7 = new Button();
             label8 = new Label();
             button9 = new Button();
             label9 = new Label();
-            label2 = new Label();
-            button8 = new Button();
             button5 = new Button();
             label6 = new Label();
             button4 = new Button();
@@ -118,7 +114,7 @@
             toolStripMenuItem2.ImageTransparentColor = Color.Magenta;
             toolStripMenuItem2.Name = "toolStripMenuItem2";
             toolStripMenuItem2.ShortcutKeys = Keys.Control | Keys.O;
-            toolStripMenuItem2.Size = new Size(179, 22);
+            toolStripMenuItem2.Size = new Size(184, 26);
             toolStripMenuItem2.Text = "&Open File";
             toolStripMenuItem2.Click += openFileDialog_menuItem_click;
             // 
@@ -128,43 +124,43 @@
             açToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             açToolStripMenuItem.Name = "açToolStripMenuItem";
             açToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.T;
-            açToolStripMenuItem.Size = new Size(179, 22);
+            açToolStripMenuItem.Size = new Size(184, 26);
             açToolStripMenuItem.Text = "&Open Folder";
             açToolStripMenuItem.Click += openFolderDialog_menuItem_click;
             // 
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new Size(176, 6);
+            toolStripSeparator.Size = new Size(181, 6);
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(176, 6);
+            toolStripSeparator1.Size = new Size(181, 6);
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(176, 6);
+            toolStripSeparator2.Size = new Size(181, 6);
             // 
             // saveResultsToolStripMenuItem
             // 
             saveResultsToolStripMenuItem.Name = "saveResultsToolStripMenuItem";
-            saveResultsToolStripMenuItem.Size = new Size(179, 22);
+            saveResultsToolStripMenuItem.Size = new Size(184, 26);
             saveResultsToolStripMenuItem.Text = "Save Results";
             saveResultsToolStripMenuItem.Click += saveResults_menuItem_click;
             // 
             // clearToolStripMenuItem
             // 
             clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            clearToolStripMenuItem.Size = new Size(179, 22);
+            clearToolStripMenuItem.Size = new Size(184, 26);
             clearToolStripMenuItem.Text = "Clear";
             clearToolStripMenuItem.Click += clear_menuItem_click;
             // 
             // çıkışToolStripMenuItem
             // 
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(179, 22);
+            çıkışToolStripMenuItem.Size = new Size(184, 26);
             çıkışToolStripMenuItem.Text = "Exit";
             çıkışToolStripMenuItem.Click += exit_menuItem_click;
             // 
@@ -226,14 +222,14 @@
             // hakkındaToolStripMenuItem
             // 
             hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
-            hakkındaToolStripMenuItem.Size = new Size(107, 22);
+            hakkındaToolStripMenuItem.Size = new Size(180, 22);
             hakkındaToolStripMenuItem.Text = "&About";
             hakkındaToolStripMenuItem.Click += aboutMenuItem_Click;
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(104, 6);
+            toolStripSeparator5.Size = new Size(177, 6);
             // 
             // splitContainer1
             // 
@@ -291,14 +287,10 @@
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(label7);
-            splitContainer2.Panel2.Controls.Add(button6);
             splitContainer2.Panel2.Controls.Add(button7);
             splitContainer2.Panel2.Controls.Add(label8);
             splitContainer2.Panel2.Controls.Add(button9);
             splitContainer2.Panel2.Controls.Add(label9);
-            splitContainer2.Panel2.Controls.Add(label2);
-            splitContainer2.Panel2.Controls.Add(button8);
             splitContainer2.Panel2.Controls.Add(button5);
             splitContainer2.Panel2.Controls.Add(label6);
             splitContainer2.Panel2.Controls.Add(button4);
@@ -332,7 +324,6 @@
             hashComboBox.Size = new Size(395, 23);
             hashComboBox.TabIndex = 3;
             hashComboBox.Text = "MD5";
-            hashComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button2
             // 
@@ -367,25 +358,6 @@
             label3.Text = "HASH IT";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(228, 328);
-            label7.Name = "label7";
-            label7.Size = new Size(98, 15);
-            label7.TabIndex = 20;
-            label7.Text = "Nothing Selected";
-            // 
-            // button6
-            // 
-            button6.Location = new Point(3, 321);
-            button6.Margin = new Padding(3, 2, 3, 2);
-            button6.Name = "button6";
-            button6.Size = new Size(219, 28);
-            button6.TabIndex = 19;
-            button6.Text = "Select File For Decryption";
-            button6.UseVisualStyleBackColor = true;
-            // 
             // button7
             // 
             button7.Location = new Point(3, 356);
@@ -399,7 +371,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(228, 296);
+            label8.Location = new Point(228, 314);
             label8.Name = "label8";
             label8.Size = new Size(98, 15);
             label8.TabIndex = 17;
@@ -407,7 +379,7 @@
             // 
             // button9
             // 
-            button9.Location = new Point(3, 289);
+            button9.Location = new Point(3, 307);
             button9.Margin = new Padding(3, 2, 3, 2);
             button9.Name = "button9";
             button9.Size = new Size(219, 28);
@@ -419,30 +391,11 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft PhagsPa", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(238, 257);
+            label9.Location = new Point(238, 268);
             label9.Name = "label9";
             label9.Size = new Size(88, 25);
             label9.TabIndex = 15;
             label9.Text = "Decrypt!";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(228, 191);
-            label2.Name = "label2";
-            label2.Size = new Size(98, 15);
-            label2.TabIndex = 14;
-            label2.Text = "Nothing Selected";
-            // 
-            // button8
-            // 
-            button8.Location = new Point(3, 184);
-            button8.Margin = new Padding(3, 2, 3, 2);
-            button8.Name = "button8";
-            button8.Size = new Size(219, 28);
-            button8.TabIndex = 13;
-            button8.Text = "Select File For Encryption";
-            button8.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -457,7 +410,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(228, 159);
+            label6.Location = new Point(228, 181);
             label6.Name = "label6";
             label6.Size = new Size(98, 15);
             label6.TabIndex = 6;
@@ -465,7 +418,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(3, 152);
+            button4.Location = new Point(3, 174);
             button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
             button4.Size = new Size(219, 28);
@@ -477,7 +430,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft PhagsPa", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(238, 124);
+            label5.Location = new Point(240, 140);
             label5.Name = "label5";
             label5.Size = new Size(86, 25);
             label5.TabIndex = 4;
@@ -505,7 +458,7 @@
             button3.Location = new Point(3, 75);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(575, 47);
+            button3.Size = new Size(567, 51);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;
@@ -588,10 +541,6 @@
         private ToolStripMenuItem çıkışToolStripMenuItem;
         private RichTextBox richTextBox1;
         private Label label9;
-        private Label label2;
-        private Button button8;
-        private Label label7;
-        private Button button6;
         private Button button7;
         private Label label8;
         private Button button9;

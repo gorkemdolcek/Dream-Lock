@@ -10,7 +10,8 @@ using Org.BouncyCastle.Crypto.Digests;
 using System.IO;
 using HashLib;
 using System.Security.Policy;
-
+using System.Drawing.Text;
+using System.Windows.Forms;
 
 
 namespace DreamLock
@@ -95,7 +96,7 @@ namespace DreamLock
                     return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
             }
-                return null;
+            return null;
         }
 
         public string CalculateWhirlPoolofFile(string filePath)
@@ -107,17 +108,16 @@ namespace DreamLock
                 return r.ToString().Replace("-", "").ToLowerInvariant();
             }
             return null;
-
         }
         public string CalculateRIPEMDofFile(string filePath, int hashType)
         {
             if (hashType == 128)
             {
                 using (var stream = File.OpenRead(filePath))
-                { 
-                IHash hasher = HashFactory.Crypto.CreateRIPEMD128();
-                HashResult r = hasher.ComputeStream(stream);
-                return r.ToString().Replace("-", "").ToLowerInvariant();
+                {
+                    IHash hasher = HashFactory.Crypto.CreateRIPEMD128();
+                    HashResult r = hasher.ComputeStream(stream);
+                    return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
             }
             else if (hashType == 160)
@@ -148,7 +148,39 @@ namespace DreamLock
                 }
             }
             return null;
-
         }
+        public string outputText = "";
+        public string hashAll(string selectedFileName, string safeSelectedFileName)
+        {
+            outputText = "";
+            string md2Hash = CalculateMDHashofFile(selectedFileName, 2);
+            outputText += "File: " + safeSelectedFileName + " MD2: " + md2Hash + "\n";
+            string md4Hash = CalculateMDHashofFile(selectedFileName, 4);
+            outputText += "File: " + safeSelectedFileName + " MD4: " + md4Hash + "\n";
+            string md5Hash = CalculateMDHashofFile(selectedFileName, 5);
+            outputText += "File: " + safeSelectedFileName + " MD5: " + md5Hash + "\n";
+            string sha1Hash = CalculateSHAHashofFile(selectedFileName, 1);
+            outputText += "File: " + safeSelectedFileName + " SHA1: " + sha1Hash + "\n";
+            string sha224Hash = CalculateSHAHashofFile(selectedFileName, 224);
+            outputText += "File: " + safeSelectedFileName + " SHA224: " + sha224Hash + "\n";
+            string sha256Hash = CalculateSHAHashofFile(selectedFileName, 256);
+            outputText += "File: " + safeSelectedFileName + " SHA-256: " + sha256Hash + "\n";
+            string sha384Hash = CalculateSHAHashofFile(selectedFileName, 384);
+            outputText += "File: " + safeSelectedFileName + " SHA-384: " + sha384Hash + "\n";
+            string sha512Hash = CalculateSHAHashofFile(selectedFileName, 512);
+            outputText += "File: " + safeSelectedFileName + " SHA-512: " + sha512Hash + "\n";
+            string whirlpoolHash = CalculateWhirlPoolofFile(selectedFileName);
+            outputText += "File: " + safeSelectedFileName + " Whirlpool: " + whirlpoolHash + "\n";
+            string ripeMD128 = CalculateRIPEMDofFile(selectedFileName, 128);
+            outputText += "File: " + safeSelectedFileName + " RIPEMD-128: " + ripeMD128 + "\n";
+            string ripeMD160 = CalculateRIPEMDofFile(selectedFileName, 160);
+            outputText += "File: " + safeSelectedFileName + " RIPMD-160: " + ripeMD160 + "\n";
+            string ripeMD256 = CalculateRIPEMDofFile(selectedFileName, 256);
+            outputText += "File: " + safeSelectedFileName + " RIPEMD-256: " + ripeMD256 + "\n";
+            string ripeMD320 = CalculateRIPEMDofFile(selectedFileName, 320);
+            outputText += "File: " + safeSelectedFileName + " RIPEMD-320: " + ripeMD320 + "\n";
+            return outputText;
+        }
+
     }
 }

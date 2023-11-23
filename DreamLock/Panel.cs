@@ -167,25 +167,83 @@ namespace DreamLock
             }
             else if (System.IO.Directory.Exists(selectedFileName))
             {
-                MessageBox.Show("bura folder ok!?");
+                string[] fileEntries=System.IO.Directory.GetFiles(selectedFileName);
+                hashingClass hash = new hashingClass();
+                foreach (string fileName in fileEntries)
+                if (hashComboBox.Text == "MD2")
+                    {
+                        string md2Hash = hash.CalculateMDHashofFile(fileName, 2);
+                        richTextBox1.Text += "File: " + fileName + " MD2: " + md2Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "MD4")
+                    {
+                        string md4Hash = hash.CalculateMDHashofFile(fileName, 4);
+                        richTextBox1.Text += "File: " + fileName + " MD4: " + md4Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "MD5")
+                    {
+                        string md5Hash = hash.CalculateMDHashofFile(fileName, 5);
+                        richTextBox1.Text += "File: " + fileName + " MD5: " + md5Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "SHA-1")
+                    {
+                        string sha1Hash = hash.CalculateSHAHashofFile(fileName, 1);
+                        richTextBox1.Text += "File: " + fileName + " SHA1: " + sha1Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "SHA-224")
+                    {
+                        string sha224Hash = hash.CalculateSHAHashofFile(fileName, 224);
+                        richTextBox1.Text += "File: " + fileName + " SHA224: " + sha224Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "SHA-256")
+                    {
+                        string sha256Hash = hash.CalculateSHAHashofFile(fileName, 256);
+                        richTextBox1.Text += "File: " + fileName + " SHA-256: " + sha256Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "SHA-384")
+                    {
+                        string sha384Hash = hash.CalculateSHAHashofFile(fileName, 384);
+                        richTextBox1.Text += "File: " + fileName + " SHA-384: " + sha384Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "SHA-512")
+                    {
+                        string sha512Hash = hash.CalculateSHAHashofFile(fileName, 512);
+                        richTextBox1.Text += "File: " + fileName + " SHA-512: " + sha512Hash + "\n";
+                    }
+                    else if (hashComboBox.Text == "RIPEMD128")
+                    {
+                        string ripeMD128 = hash.CalculateRIPEMDofFile(fileName, 128);
+                        richTextBox1.Text += "File: " + fileName + " RIPEMD-128: " + ripeMD128 + "\n";
+                    }
+                    else if (hashComboBox.Text == "RIPEMD160")
+                    {
+                        string ripeMD160 = hash.CalculateRIPEMDofFile(fileName, 160);
+                        richTextBox1.Text += "File: " + fileName + " RIPEMD-160: " + ripeMD160 + "\n";
+                    }
+                    else if (hashComboBox.Text == "RIPEMD256")
+                    {
+                        string ripeMD256 = hash.CalculateRIPEMDofFile(fileName, 256);
+                        richTextBox1.Text += "File: " + fileName + " RIPEMD-256: " + ripeMD256 + "\n";
+                    }
+                    else if (hashComboBox.Text == "RIPEMD320")
+                    {
+                        string ripeMD320 = hash.CalculateRIPEMDofFile(fileName, 320);
+                        richTextBox1.Text += "File: " + fileName + " RIPEMD-320: " + ripeMD320 + "\n";
+                    }
+                    else if (hashComboBox.Text == "Whirlpool")
+                    {
+                        string whirlpoolHash = hash.CalculateWhirlPoolofFile(fileName);
+                        richTextBox1.Text += "File: " + fileName + " Whirlpool: " + whirlpoolHash + "\n";
+                    }
             }
 
         }
+        /*
+         * Son vuslattan beri ne ses ne seda
+         * Edin Vio’ya selam rest in peace Beta
+         * Rest in peace Maestro yaktım bi’ çerağ
+        */
 
-        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void saveResults_menuItem_click(object sender, EventArgs e)
         {
@@ -205,7 +263,7 @@ namespace DreamLock
                     MessageBox.Show("Dosya başarıyla kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) //burda niye exception var???????????
-                {
+                {// he tamam zorunluymus
                     MessageBox.Show("Dosya kaydetme hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -214,33 +272,17 @@ namespace DreamLock
         private void hashAll_click(object sender, EventArgs e)
         {
             hashingClass hash = new hashingClass();
-            string md2Hash = hash.CalculateMDHashofFile(selectedFileName, 2);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " MD2: " + md2Hash + "\n";
-            string md4Hash = hash.CalculateMDHashofFile(selectedFileName, 4);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " MD4: " + md4Hash + "\n";
-            string md5Hash = hash.CalculateMDHashofFile(selectedFileName, 5);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " MD5: " + md5Hash + "\n";
-            string sha1Hash = hash.CalculateSHAHashofFile(selectedFileName, 1);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " SHA1: " + sha1Hash + "\n";
-            string sha224Hash = hash.CalculateSHAHashofFile(selectedFileName, 224);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " SHA224: " + sha224Hash + "\n";
-            string sha256Hash = hash.CalculateSHAHashofFile(selectedFileName, 256);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-256: " + sha256Hash + "\n";
-            string sha384Hash = hash.CalculateSHAHashofFile(selectedFileName, 384);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-384: " + sha384Hash + "\n";
-            string sha512Hash = hash.CalculateSHAHashofFile(selectedFileName, 512);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-512: " + sha512Hash + "\n";
-            string whirlpoolHash = hash.CalculateWhirlPoolofFile(selectedFileName);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " Whirlpool: " + whirlpoolHash + "\n";
-            string ripeMD128 = hash.CalculateRIPEMDofFile(selectedFileName, 128);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-128: " + ripeMD128 + "\n";
-            string ripeMD160 = hash.CalculateRIPEMDofFile(selectedFileName, 160);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " RIPMD-160: " + ripeMD160 + "\n";
-            string ripeMD256 = hash.CalculateRIPEMDofFile(selectedFileName, 256);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-256: " + ripeMD256 + "\n";
-            string ripeMD320 = hash.CalculateRIPEMDofFile(selectedFileName, 320);
-            richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-320: " + ripeMD320 + "\n";
-
+            if (System.IO.File.Exists(selectedFileName))
+            {
+                richTextBox1.Text += hash.hashAll(selectedFileName, safeSelectedFileName);
+            }
+            else if (System.IO.Directory.Exists(selectedFileName))
+            {
+                string[] fileEntries = System.IO.Directory.GetFiles(selectedFileName);
+                foreach (string fileName in fileEntries)
+                        richTextBox1.Text += hash.hashAll(fileName, fileName);
+            }
+                
         }
 
         private void clear_menuItem_click(object sender, EventArgs e)
