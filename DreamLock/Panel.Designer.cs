@@ -43,10 +43,8 @@
             çıkışToolStripMenuItem = new ToolStripMenuItem();
             araçlarToolStripMenuItem = new ToolStripMenuItem();
             RecentHashesMenuItem = new ToolStripMenuItem();
-            RecentHashesVirusTotalMenuItem = new ToolStripMenuItem();
             RSAKeyDeposuMenuItem = new ToolStripMenuItem();
             AESKeyDeposuMenuItem = new ToolStripMenuItem();
-            switchToOldAlgorithmsMenuItem = new ToolStripMenuItem();
             textHashingToolStripMenuItem = new ToolStripMenuItem();
             yardımToolStripMenuItem = new ToolStripMenuItem();
             hakkındaToolStripMenuItem = new ToolStripMenuItem();
@@ -166,7 +164,7 @@
             // 
             // araçlarToolStripMenuItem
             // 
-            araçlarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { RecentHashesMenuItem, RecentHashesVirusTotalMenuItem, RSAKeyDeposuMenuItem, AESKeyDeposuMenuItem, switchToOldAlgorithmsMenuItem, textHashingToolStripMenuItem });
+            araçlarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { RecentHashesMenuItem, RSAKeyDeposuMenuItem, AESKeyDeposuMenuItem, textHashingToolStripMenuItem });
             araçlarToolStripMenuItem.Name = "araçlarToolStripMenuItem";
             araçlarToolStripMenuItem.Size = new Size(46, 20);
             araçlarToolStripMenuItem.Text = "&Tools";
@@ -174,43 +172,30 @@
             // RecentHashesMenuItem
             // 
             RecentHashesMenuItem.Name = "RecentHashesMenuItem";
-            RecentHashesMenuItem.Size = new Size(260, 22);
+            RecentHashesMenuItem.Size = new Size(207, 22);
             RecentHashesMenuItem.Text = "&Recent Hashes";
             RecentHashesMenuItem.Click += RecentHashes_menuItem_click;
-            // 
-            // RecentHashesVirusTotalMenuItem
-            // 
-            RecentHashesVirusTotalMenuItem.Name = "RecentHashesVirusTotalMenuItem";
-            RecentHashesVirusTotalMenuItem.Size = new Size(260, 22);
-            RecentHashesVirusTotalMenuItem.Text = "Search Recent Hashes on VirusTotal";
-            RecentHashesVirusTotalMenuItem.Click += virusTotalRecentHashes_menuItem_click;
             // 
             // RSAKeyDeposuMenuItem
             // 
             RSAKeyDeposuMenuItem.Name = "RSAKeyDeposuMenuItem";
-            RSAKeyDeposuMenuItem.Size = new Size(260, 22);
+            RSAKeyDeposuMenuItem.Size = new Size(207, 22);
             RSAKeyDeposuMenuItem.Text = "RSA Key Storage";
             RSAKeyDeposuMenuItem.Click += RSAKeyStorage_menuItem_click;
             // 
             // AESKeyDeposuMenuItem
             // 
             AESKeyDeposuMenuItem.Name = "AESKeyDeposuMenuItem";
-            AESKeyDeposuMenuItem.Size = new Size(260, 22);
+            AESKeyDeposuMenuItem.Size = new Size(207, 22);
             AESKeyDeposuMenuItem.Text = "AES Key Storage";
             AESKeyDeposuMenuItem.Click += AESKeyStorage_menuItem_click;
-            // 
-            // switchToOldAlgorithmsMenuItem
-            // 
-            switchToOldAlgorithmsMenuItem.Name = "switchToOldAlgorithmsMenuItem";
-            switchToOldAlgorithmsMenuItem.Size = new Size(260, 22);
-            switchToOldAlgorithmsMenuItem.Text = "Switch to Old Algorithms";
-            switchToOldAlgorithmsMenuItem.Click += switchToOldAlgorithms_menuItem_click;
             // 
             // textHashingToolStripMenuItem
             // 
             textHashingToolStripMenuItem.Name = "textHashingToolStripMenuItem";
-            textHashingToolStripMenuItem.Size = new Size(260, 22);
+            textHashingToolStripMenuItem.Size = new Size(180, 22);
             textHashingToolStripMenuItem.Text = "Text Hashing";
+            textHashingToolStripMenuItem.Click += textHashingToolStripMenuItem_Click;
             // 
             // yardımToolStripMenuItem
             // 
@@ -222,14 +207,14 @@
             // hakkındaToolStripMenuItem
             // 
             hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
-            hakkındaToolStripMenuItem.Size = new Size(107, 22);
+            hakkındaToolStripMenuItem.Size = new Size(180, 22);
             hakkındaToolStripMenuItem.Text = "&About";
             hakkındaToolStripMenuItem.Click += aboutMenuItem_Click;
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(104, 6);
+            toolStripSeparator5.Size = new Size(177, 6);
             // 
             // splitContainer1
             // 
@@ -458,7 +443,7 @@
             button3.Location = new Point(3, 75);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(586, 89);
+            button3.Size = new Size(566, 51);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;
@@ -511,13 +496,11 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem araçlarToolStripMenuItem;
         private ToolStripMenuItem RecentHashesMenuItem;
-        private ToolStripMenuItem RecentHashesVirusTotalMenuItem;
         private ToolStripMenuItem yardımToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator5;
         private ToolStripMenuItem hakkındaToolStripMenuItem;
         private ToolStripMenuItem RSAKeyDeposuMenuItem;
         private ToolStripMenuItem AESKeyDeposuMenuItem;
-        private ToolStripMenuItem switchToOldAlgorithmsMenuItem;
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
         private Label label1;

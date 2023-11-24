@@ -15,8 +15,8 @@ namespace DreamLock
 {
     public partial class Panel : Form
     {
-        private string selectedFileName="";
-        private string safeSelectedFileName="";
+        private string selectedFileName = "";
+        private string safeSelectedFileName = "";
 
         hashLogClass csvManager = new hashLogClass();
         hashingClass hash = new hashingClass();
@@ -189,7 +189,7 @@ namespace DreamLock
             }
             else if (System.IO.Directory.Exists(selectedFileName))
             {
-                string[] fileEntries=System.IO.Directory.GetFiles(selectedFileName);
+                string[] fileEntries = System.IO.Directory.GetFiles(selectedFileName);
                 foreach (string fileName in fileEntries)
                     if (hashComboBox.Text == "MD2")
                     {
@@ -320,14 +320,19 @@ namespace DreamLock
             {
                 string[] fileEntries = System.IO.Directory.GetFiles(selectedFileName);
                 foreach (string fileName in fileEntries)
-                        richTextBox1.Text += hash.hashAll(fileName, fileName);
+                    richTextBox1.Text += hash.hashAll(fileName, fileName);
             }
-                
+
         }
 
         private void clear_menuItem_click(object sender, EventArgs e)
         {
             richTextBox1.Text = "";
+        }
+
+        private void textHashingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
