@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecentHashes));
             listBox1 = new ListBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
+            fileNameLabel = new Label();
+            hashTypeLabel = new Label();
+            hashValueLabel = new Label();
+            hashDateLabel = new Label();
             SuspendLayout();
             // 
             // listBox1
@@ -41,72 +42,74 @@
             listBox1.ItemHeight = 15;
             listBox1.Location = new Point(12, 12);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(277, 229);
+            listBox1.Size = new Size(348, 229);
             listBox1.TabIndex = 1;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // label1
+            // fileNameLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(296, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(91, 18);
-            label1.TabIndex = 2;
-            label1.Text = "File Name:";
-            label1.Click += label1_Click;
+            fileNameLabel.AutoSize = true;
+            fileNameLabel.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            fileNameLabel.Location = new Point(366, 12);
+            fileNameLabel.Name = "fileNameLabel";
+            fileNameLabel.Size = new Size(91, 18);
+            fileNameLabel.TabIndex = 2;
+            fileNameLabel.Text = "File Name:";
+            fileNameLabel.Click += label1_Click;
             // 
-            // label2
+            // hashTypeLabel
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(296, 48);
-            label2.Name = "label2";
-            label2.Size = new Size(97, 18);
-            label2.TabIndex = 3;
-            label2.Text = "Hash Type:";
+            hashTypeLabel.AutoSize = true;
+            hashTypeLabel.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            hashTypeLabel.Location = new Point(366, 48);
+            hashTypeLabel.Name = "hashTypeLabel";
+            hashTypeLabel.Size = new Size(97, 18);
+            hashTypeLabel.TabIndex = 3;
+            hashTypeLabel.Text = "Hash Type:";
             // 
-            // label3
+            // hashValueLabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(296, 84);
-            label3.Name = "label3";
-            label3.Size = new Size(103, 18);
-            label3.TabIndex = 4;
-            label3.Text = "Hash Value:";
+            hashValueLabel.AutoSize = true;
+            hashValueLabel.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            hashValueLabel.Location = new Point(366, 84);
+            hashValueLabel.Name = "hashValueLabel";
+            hashValueLabel.Size = new Size(103, 18);
+            hashValueLabel.TabIndex = 4;
+            hashValueLabel.Text = "Hash Value:";
             // 
-            // label4
+            // hashDateLabel
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(296, 120);
-            label4.Name = "label4";
-            label4.Size = new Size(96, 18);
-            label4.TabIndex = 5;
-            label4.Text = "Hash Date:";
+            hashDateLabel.AutoSize = true;
+            hashDateLabel.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            hashDateLabel.Location = new Point(366, 120);
+            hashDateLabel.Name = "hashDateLabel";
+            hashDateLabel.Size = new Size(96, 18);
+            hashDateLabel.TabIndex = 5;
+            hashDateLabel.Text = "Hash Date:";
             // 
             // RecentHashes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(702, 253);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            ClientSize = new Size(833, 253);
+            Controls.Add(hashDateLabel);
+            Controls.Add(hashValueLabel);
+            Controls.Add(hashTypeLabel);
+            Controls.Add(fileNameLabel);
             Controls.Add(listBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RecentHashes";
-            Text = "RecentHashes";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "DreamLock Recent Hashes";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private ListBox listBox1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
+        private Label fileNameLabel;
+        private Label hashTypeLabel;
+        private Label hashValueLabel;
+        private Label hashDateLabel;
     }
 }

@@ -458,7 +458,7 @@
             button3.Location = new Point(3, 75);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(584, 85);
+            button3.Size = new Size(586, 89);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;

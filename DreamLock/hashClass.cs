@@ -163,11 +163,9 @@ namespace DreamLock
             outputText += "File: " + safeSelectedFileName + " MD4: " + md4Hash + "\n";
             csvManager.WriteToCsv(safeSelectedFileName, "MD4", md4Hash, DateTime.Now);
 
-
             string md5Hash = CalculateMDHashofFile(selectedFileName, 5);
             outputText += "File: " + safeSelectedFileName + " MD5: " + md5Hash + "\n";
             csvManager.WriteToCsv(safeSelectedFileName, "MD5", md5Hash, DateTime.Now);
-
 
             string sha1Hash = CalculateSHAHashofFile(selectedFileName, 1);
             outputText += "File: " + safeSelectedFileName + " SHA1: " + sha1Hash + "\n";
