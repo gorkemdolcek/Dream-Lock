@@ -114,7 +114,7 @@
             toolStripMenuItem2.ImageTransparentColor = Color.Magenta;
             toolStripMenuItem2.Name = "toolStripMenuItem2";
             toolStripMenuItem2.ShortcutKeys = Keys.Control | Keys.O;
-            toolStripMenuItem2.Size = new Size(184, 26);
+            toolStripMenuItem2.Size = new Size(179, 22);
             toolStripMenuItem2.Text = "&Open File";
             toolStripMenuItem2.Click += openFileDialog_menuItem_click;
             // 
@@ -124,43 +124,43 @@
             açToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             açToolStripMenuItem.Name = "açToolStripMenuItem";
             açToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.T;
-            açToolStripMenuItem.Size = new Size(184, 26);
+            açToolStripMenuItem.Size = new Size(179, 22);
             açToolStripMenuItem.Text = "&Open Folder";
             açToolStripMenuItem.Click += openFolderDialog_menuItem_click;
             // 
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new Size(181, 6);
+            toolStripSeparator.Size = new Size(176, 6);
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(181, 6);
+            toolStripSeparator1.Size = new Size(176, 6);
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(181, 6);
+            toolStripSeparator2.Size = new Size(176, 6);
             // 
             // saveResultsToolStripMenuItem
             // 
             saveResultsToolStripMenuItem.Name = "saveResultsToolStripMenuItem";
-            saveResultsToolStripMenuItem.Size = new Size(184, 26);
+            saveResultsToolStripMenuItem.Size = new Size(179, 22);
             saveResultsToolStripMenuItem.Text = "Save Results";
             saveResultsToolStripMenuItem.Click += saveResults_menuItem_click;
             // 
             // clearToolStripMenuItem
             // 
             clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            clearToolStripMenuItem.Size = new Size(184, 26);
+            clearToolStripMenuItem.Size = new Size(179, 22);
             clearToolStripMenuItem.Text = "Clear";
             clearToolStripMenuItem.Click += clear_menuItem_click;
             // 
             // çıkışToolStripMenuItem
             // 
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(184, 26);
+            çıkışToolStripMenuItem.Size = new Size(179, 22);
             çıkışToolStripMenuItem.Text = "Exit";
             çıkışToolStripMenuItem.Click += exit_menuItem_click;
             // 
@@ -222,14 +222,14 @@
             // hakkındaToolStripMenuItem
             // 
             hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
-            hakkındaToolStripMenuItem.Size = new Size(180, 22);
+            hakkındaToolStripMenuItem.Size = new Size(107, 22);
             hakkındaToolStripMenuItem.Text = "&About";
             hakkındaToolStripMenuItem.Click += aboutMenuItem_Click;
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(177, 6);
+            toolStripSeparator5.Size = new Size(104, 6);
             // 
             // splitContainer1
             // 
@@ -458,7 +458,7 @@
             button3.Location = new Point(3, 75);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(567, 51);
+            button3.Size = new Size(584, 85);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;

@@ -19,6 +19,8 @@ namespace DreamLock
     public class hashingClass
     {
         IDigest digest;
+        hashLogClass csvManager = new hashLogClass();
+
         public string CalculateMDHashofFile(string filePath, int hashType)
         {
 
@@ -152,32 +154,61 @@ namespace DreamLock
         public string hashAll(string selectedFileName, string safeSelectedFileName)
         {
             outputText = "";
+
             string md2Hash = CalculateMDHashofFile(selectedFileName, 2);
             outputText += "File: " + safeSelectedFileName + " MD2: " + md2Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "MD2", md2Hash, DateTime.Now);
+
             string md4Hash = CalculateMDHashofFile(selectedFileName, 4);
             outputText += "File: " + safeSelectedFileName + " MD4: " + md4Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "MD4", md4Hash, DateTime.Now);
+
+
             string md5Hash = CalculateMDHashofFile(selectedFileName, 5);
             outputText += "File: " + safeSelectedFileName + " MD5: " + md5Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "MD5", md5Hash, DateTime.Now);
+
+
             string sha1Hash = CalculateSHAHashofFile(selectedFileName, 1);
             outputText += "File: " + safeSelectedFileName + " SHA1: " + sha1Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "SHA1", sha1Hash, DateTime.Now);
+
             string sha224Hash = CalculateSHAHashofFile(selectedFileName, 224);
-            outputText += "File: " + safeSelectedFileName + " SHA224: " + sha224Hash + "\n";
+            outputText += "File: " + safeSelectedFileName + " SHA-224: " + sha224Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "SHA-224", sha224Hash, DateTime.Now);
+
             string sha256Hash = CalculateSHAHashofFile(selectedFileName, 256);
             outputText += "File: " + safeSelectedFileName + " SHA-256: " + sha256Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "SHA-256", sha256Hash, DateTime.Now);
+
             string sha384Hash = CalculateSHAHashofFile(selectedFileName, 384);
             outputText += "File: " + safeSelectedFileName + " SHA-384: " + sha384Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "SHA-384", sha384Hash, DateTime.Now);
+
             string sha512Hash = CalculateSHAHashofFile(selectedFileName, 512);
             outputText += "File: " + safeSelectedFileName + " SHA-512: " + sha512Hash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "SHA-512", sha512Hash, DateTime.Now);
+
             string whirlpoolHash = CalculateWhirlPoolofFile(selectedFileName);
             outputText += "File: " + safeSelectedFileName + " Whirlpool: " + whirlpoolHash + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "Whirlpool", whirlpoolHash, DateTime.Now);
+
             string ripeMD128 = CalculateRIPEMDofFile(selectedFileName, 128);
             outputText += "File: " + safeSelectedFileName + " RIPEMD-128: " + ripeMD128 + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-128", ripeMD128, DateTime.Now);
+
             string ripeMD160 = CalculateRIPEMDofFile(selectedFileName, 160);
-            outputText += "File: " + safeSelectedFileName + " RIPMD-160: " + ripeMD160 + "\n";
+            outputText += "File: " + safeSelectedFileName + " RIPEMD-160: " + ripeMD160 + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-160", ripeMD128, DateTime.Now);
+
             string ripeMD256 = CalculateRIPEMDofFile(selectedFileName, 256);
             outputText += "File: " + safeSelectedFileName + " RIPEMD-256: " + ripeMD256 + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-256", ripeMD256, DateTime.Now);
+
             string ripeMD320 = CalculateRIPEMDofFile(selectedFileName, 320);
             outputText += "File: " + safeSelectedFileName + " RIPEMD-320: " + ripeMD320 + "\n";
+            csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-320", ripeMD320, DateTime.Now);
+
             return outputText;
         }
 

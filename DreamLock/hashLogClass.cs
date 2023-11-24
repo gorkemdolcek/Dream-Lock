@@ -1,51 +1,68 @@
-﻿using CsvHelper.Configuration;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using DreamLock;
+using System.Reflection;
 
 namespace DreamLock
 {
+    public class FileRecord
+    {
+        [Name("fileName")]
+        public string FileName { get; set; }
+
+        [Name("hashType")]
+        public string HashType { get; set; }
+
+        [Name("hash")]
+        public string Hash { get; set; }
+
+        [Name("dateTime")]
+        public string DateTime { get; set; }
+    }
 
     public class hashLogClass
     {
+
+        private string loc = "db/hashdb.csv";
+
         public static void checkdbFile()
         {
-            if (System.IO.File.Exists("db/hashdb.csv"))
+            if (!System.IO.File.Exists("db/hashdb.csv"))//if not icat edilmeden once insanlar
             {
-            }
-            else
-            {
-                using (StreamWriter sw = new StreamWriter("db/hashdb.csv"))
+                System.IO.Directory.CreateDirectory("./db/");
+                using (StreamWriter w = File.AppendText(".\\db\\hashdb.csv"))
                 {
-                    sw.WriteLine("fileName,hashType,hash,dateTime"+"\n");
+                    w.WriteLine("fileName,hashType,hash,dateTime" + "\n");
                     checkdbFile();
                 }
             }
         }
-        public string writeToCSV(string fileName, string hashType, string hash, string dateTime)
+
+    public void WriteToCsv(string hashName,string Hash, string Hash2, DateTime DateTime)
         {
-            if (System.IO.File.Exists("db/hashdb.csv"))
+            using (StreamWriter sw = new StreamWriter(loc, append:true))
             {
-                using (StreamWriter sw = new StreamWriter("db/hashdb.csv"))
-                {
-                    sw.WriteLine(fileName+","+hashType + "," + hash + "," + dateTime+"\n");
-                    checkdbFile();
-                }
+                sw.WriteLine(hashName+","+Hash+","+Hash2+","+DateTime.Now.ToString());
             }
-            return "unsuccess";
         }
-        public string readCSV(string fileName, string hashType, string hash, string dateTime)
+        public List<FileRecord> ReadFromCsv()
+    {
+        using (var reader = new StreamReader(loc))
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            if (System.IO.File.Exists("db/hashdb.csv"))
-            {
-                using (StreamReader sr = new StreamReader("db/hashdb.csv"))
-                {
-                }
-            }
-            return "unsuccess";
+                return csv.GetRecords<FileRecord>().ToList();
         }
+        }
+
     }
 }

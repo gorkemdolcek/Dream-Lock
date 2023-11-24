@@ -17,6 +17,9 @@ namespace DreamLock
     {
         private string selectedFileName="";
         private string safeSelectedFileName="";
+
+        hashLogClass csvManager = new hashLogClass();
+        hashingClass hash = new hashingClass();
         public Panel()
         {
             InitializeComponent();
@@ -98,145 +101,182 @@ namespace DreamLock
         {
             if (System.IO.File.Exists(selectedFileName))
             {
-                hashingClass hash = new hashingClass();
                 if (hashComboBox.Text == "MD2")
                 {
                     string md2Hash = hash.CalculateMDHashofFile(selectedFileName, 2);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " MD2: " + md2Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "MD2", md2Hash, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "MD4")
                 {
                     string md4Hash = hash.CalculateMDHashofFile(selectedFileName, 4);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " MD4: " + md4Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "MD4", md4Hash, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "MD5")
                 {
                     string md5Hash = hash.CalculateMDHashofFile(selectedFileName, 5);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " MD5: " + md5Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "MD5", md5Hash, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "SHA-1")
                 {
                     string sha1Hash = hash.CalculateSHAHashofFile(selectedFileName, 1);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " SHA1: " + sha1Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "SHA-1", sha1Hash, DateTime.Now);
                 }
                 else if (hashComboBox.Text == "SHA-224")
                 {
                     string sha224Hash = hash.CalculateSHAHashofFile(selectedFileName, 224);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " SHA224: " + sha224Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "SHA-224", sha224Hash, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "SHA-256")
                 {
                     string sha256Hash = hash.CalculateSHAHashofFile(selectedFileName, 256);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-256: " + sha256Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "SHA-256", sha256Hash, DateTime.Now);
                 }
                 else if (hashComboBox.Text == "SHA-384")
                 {
                     string sha384Hash = hash.CalculateSHAHashofFile(selectedFileName, 384);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-384: " + sha384Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "SHA-384", sha384Hash, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "SHA-512")
                 {
                     string sha512Hash = hash.CalculateSHAHashofFile(selectedFileName, 512);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-512: " + sha512Hash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "SHA-512", sha512Hash, DateTime.Now);
                 }
                 else if (hashComboBox.Text == "RIPEMD128")
                 {
                     string ripeMD128 = hash.CalculateRIPEMDofFile(selectedFileName, 128);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-128: " + ripeMD128 + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-128", ripeMD128, DateTime.Now);
                 }
                 else if (hashComboBox.Text == "RIPEMD160")
                 {
                     string ripeMD160 = hash.CalculateRIPEMDofFile(selectedFileName, 160);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-160: " + ripeMD160 + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-160", ripeMD160, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "RIPEMD256")
                 {
                     string ripeMD256 = hash.CalculateRIPEMDofFile(selectedFileName, 256);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-256: " + ripeMD256 + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-256", ripeMD256, DateTime.Now);
+
                 }
                 else if (hashComboBox.Text == "RIPEMD320")
                 {
                     string ripeMD320 = hash.CalculateRIPEMDofFile(selectedFileName, 320);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-320: " + ripeMD320 + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-320", ripeMD320, DateTime.Now);
                 }
                 else if (hashComboBox.Text == "Whirlpool")
                 {
                     string whirlpoolHash = hash.CalculateWhirlPoolofFile(selectedFileName);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " Whirlpool: " + whirlpoolHash + "\n";
+                    csvManager.WriteToCsv(safeSelectedFileName, "Whirlpool", whirlpoolHash, DateTime.Now);
                 }
             }
             else if (System.IO.Directory.Exists(selectedFileName))
             {
                 string[] fileEntries=System.IO.Directory.GetFiles(selectedFileName);
-                hashingClass hash = new hashingClass();
                 foreach (string fileName in fileEntries)
-                if (hashComboBox.Text == "MD2")
+                    if (hashComboBox.Text == "MD2")
                     {
-                        string md2Hash = hash.CalculateMDHashofFile(fileName, 2);
-                        richTextBox1.Text += "File: " + fileName + " MD2: " + md2Hash + "\n";
+                        string md2Hash = hash.CalculateMDHashofFile(selectedFileName, 2);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " MD2: " + md2Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "MD2", md2Hash, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "MD4")
                     {
-                        string md4Hash = hash.CalculateMDHashofFile(fileName, 4);
-                        richTextBox1.Text += "File: " + fileName + " MD4: " + md4Hash + "\n";
+                        string md4Hash = hash.CalculateMDHashofFile(selectedFileName, 4);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " MD4: " + md4Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "MD4", md4Hash, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "MD5")
                     {
-                        string md5Hash = hash.CalculateMDHashofFile(fileName, 5);
-                        richTextBox1.Text += "File: " + fileName + " MD5: " + md5Hash + "\n";
+                        string md5Hash = hash.CalculateMDHashofFile(selectedFileName, 5);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " MD5: " + md5Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "MD5", md5Hash, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "SHA-1")
                     {
-                        string sha1Hash = hash.CalculateSHAHashofFile(fileName, 1);
-                        richTextBox1.Text += "File: " + fileName + " SHA1: " + sha1Hash + "\n";
+                        string sha1Hash = hash.CalculateSHAHashofFile(selectedFileName, 1);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " SHA1: " + sha1Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "SHA-1", sha1Hash, DateTime.Now);
                     }
                     else if (hashComboBox.Text == "SHA-224")
                     {
-                        string sha224Hash = hash.CalculateSHAHashofFile(fileName, 224);
-                        richTextBox1.Text += "File: " + fileName + " SHA224: " + sha224Hash + "\n";
+                        string sha224Hash = hash.CalculateSHAHashofFile(selectedFileName, 224);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " SHA224: " + sha224Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "SHA-224", sha224Hash, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "SHA-256")
                     {
-                        string sha256Hash = hash.CalculateSHAHashofFile(fileName, 256);
-                        richTextBox1.Text += "File: " + fileName + " SHA-256: " + sha256Hash + "\n";
+                        string sha256Hash = hash.CalculateSHAHashofFile(selectedFileName, 256);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-256: " + sha256Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "SHA-256", sha256Hash, DateTime.Now);
                     }
                     else if (hashComboBox.Text == "SHA-384")
                     {
-                        string sha384Hash = hash.CalculateSHAHashofFile(fileName, 384);
-                        richTextBox1.Text += "File: " + fileName + " SHA-384: " + sha384Hash + "\n";
+                        string sha384Hash = hash.CalculateSHAHashofFile(selectedFileName, 384);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-384: " + sha384Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "SHA-384", sha384Hash, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "SHA-512")
                     {
-                        string sha512Hash = hash.CalculateSHAHashofFile(fileName, 512);
-                        richTextBox1.Text += "File: " + fileName + " SHA-512: " + sha512Hash + "\n";
+                        string sha512Hash = hash.CalculateSHAHashofFile(selectedFileName, 512);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " SHA-512: " + sha512Hash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "SHA-512", sha512Hash, DateTime.Now);
                     }
                     else if (hashComboBox.Text == "RIPEMD128")
                     {
-                        string ripeMD128 = hash.CalculateRIPEMDofFile(fileName, 128);
-                        richTextBox1.Text += "File: " + fileName + " RIPEMD-128: " + ripeMD128 + "\n";
+                        string ripeMD128 = hash.CalculateRIPEMDofFile(selectedFileName, 128);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-128: " + ripeMD128 + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-128", ripeMD128, DateTime.Now);
                     }
                     else if (hashComboBox.Text == "RIPEMD160")
                     {
-                        string ripeMD160 = hash.CalculateRIPEMDofFile(fileName, 160);
-                        richTextBox1.Text += "File: " + fileName + " RIPEMD-160: " + ripeMD160 + "\n";
+                        string ripeMD160 = hash.CalculateRIPEMDofFile(selectedFileName, 160);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-160: " + ripeMD160 + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-160", ripeMD160, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "RIPEMD256")
                     {
-                        string ripeMD256 = hash.CalculateRIPEMDofFile(fileName, 256);
-                        richTextBox1.Text += "File: " + fileName + " RIPEMD-256: " + ripeMD256 + "\n";
+                        string ripeMD256 = hash.CalculateRIPEMDofFile(selectedFileName, 256);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-256: " + ripeMD256 + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-256", ripeMD256, DateTime.Now);
+
                     }
                     else if (hashComboBox.Text == "RIPEMD320")
                     {
-                        string ripeMD320 = hash.CalculateRIPEMDofFile(fileName, 320);
-                        richTextBox1.Text += "File: " + fileName + " RIPEMD-320: " + ripeMD320 + "\n";
+                        string ripeMD320 = hash.CalculateRIPEMDofFile(selectedFileName, 320);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " RIPEMD-320: " + ripeMD320 + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "RIPEMD-320", ripeMD320, DateTime.Now);
                     }
                     else if (hashComboBox.Text == "Whirlpool")
                     {
-                        string whirlpoolHash = hash.CalculateWhirlPoolofFile(fileName);
-                        richTextBox1.Text += "File: " + fileName + " Whirlpool: " + whirlpoolHash + "\n";
+                        string whirlpoolHash = hash.CalculateWhirlPoolofFile(selectedFileName);
+                        richTextBox1.Text += "File: " + safeSelectedFileName + " Whirlpool: " + whirlpoolHash + "\n";
+                        csvManager.WriteToCsv(safeSelectedFileName, "Whirlpool", whirlpoolHash, DateTime.Now);
                     }
             }
-
         }
         /*
          * Son vuslattan beri ne ses ne seda
