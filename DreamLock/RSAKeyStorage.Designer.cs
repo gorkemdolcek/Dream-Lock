@@ -37,6 +37,7 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // listView1
@@ -71,7 +72,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 278);
+            button1.Location = new Point(177, 278);
             button1.Name = "button1";
             button1.Size = new Size(158, 45);
             button1.TabIndex = 1;
@@ -89,18 +90,28 @@
             // 
             // button3
             // 
-            button3.Location = new Point(261, 278);
+            button3.Location = new Point(341, 278);
             button3.Name = "button3";
             button3.Size = new Size(158, 45);
             button3.TabIndex = 3;
             button3.Text = "Export Key to New Location";
             button3.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            button4.Location = new Point(12, 278);
+            button4.Name = "button4";
+            button4.Size = new Size(158, 45);
+            button4.TabIndex = 4;
+            button4.Text = "Add From File";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // RSAKeyStorage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(676, 331);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -121,5 +132,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button button4;
     }
 }
