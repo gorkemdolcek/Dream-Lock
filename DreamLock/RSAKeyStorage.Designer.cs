@@ -28,12 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "RSAKeyStorage";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RSAKeyStorage));
+            listView1 = new ListView();
+            keyTypeHeader = new ColumnHeader();
+            keyNameHeader = new ColumnHeader();
+            keySavedLocationHeader = new ColumnHeader();
+            keyCreationDate = new ColumnHeader();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            SuspendLayout();
+            // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { keyTypeHeader, keyNameHeader, keySavedLocationHeader, keyCreationDate });
+            listView1.Location = new Point(12, 12);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(653, 260);
+            listView1.TabIndex = 0;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // keyTypeHeader
+            // 
+            keyTypeHeader.Text = "Key Type";
+            keyTypeHeader.Width = 80;
+            // 
+            // keyNameHeader
+            // 
+            keyNameHeader.Text = "Key Name";
+            keyNameHeader.Width = 150;
+            // 
+            // keySavedLocationHeader
+            // 
+            keySavedLocationHeader.Text = "Key Saved Location";
+            keySavedLocationHeader.Width = 300;
+            // 
+            // keyCreationDate
+            // 
+            keyCreationDate.Text = "Creation Date";
+            keyCreationDate.Width = 120;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 278);
+            button1.Name = "button1";
+            button1.Size = new Size(158, 45);
+            button1.TabIndex = 1;
+            button1.Text = "Delete";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(505, 278);
+            button2.Name = "button2";
+            button2.Size = new Size(158, 45);
+            button2.TabIndex = 2;
+            button2.Text = "Open Key Location";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(261, 278);
+            button3.Name = "button3";
+            button3.Size = new Size(158, 45);
+            button3.TabIndex = 3;
+            button3.Text = "Export Key to New Location";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // RSAKeyStorage
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(676, 331);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(listView1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "RSAKeyStorage";
+            Text = "DreamLock RSA Key Storage";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private ListView listView1;
+        private ColumnHeader keyTypeHeader;
+        private ColumnHeader keyNameHeader;
+        private ColumnHeader keySavedLocationHeader;
+        private ColumnHeader keyCreationDate;
+        private Button button1;
+        private Button button2;
+        private Button button3;
     }
 }

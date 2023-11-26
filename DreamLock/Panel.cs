@@ -367,7 +367,7 @@ namespace DreamLock
                 }
             }
 
-        
+           
 
         private void openPublicKey_click(object sender, EventArgs e)
         {
