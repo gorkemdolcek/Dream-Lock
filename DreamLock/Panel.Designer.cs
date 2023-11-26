@@ -58,14 +58,14 @@
             hashItButton = new Button();
             label3 = new Label();
             button7 = new Button();
-            label8 = new Label();
+            privateKeyLabel = new Label();
             button9 = new Button();
             label9 = new Label();
             button5 = new Button();
-            label6 = new Label();
+            publicKeyLabel = new Label();
             button4 = new Button();
             label5 = new Label();
-            comboBox2 = new ComboBox();
+            encryptAlgorithmBox = new ComboBox();
             button3 = new Button();
             label4 = new Label();
             saveFileDialog1 = new SaveFileDialog();
@@ -172,30 +172,30 @@
             // RecentHashesMenuItem
             // 
             RecentHashesMenuItem.Name = "RecentHashesMenuItem";
-            RecentHashesMenuItem.Size = new Size(207, 22);
+            RecentHashesMenuItem.Size = new Size(160, 22);
             RecentHashesMenuItem.Text = "&Recent Hashes";
             RecentHashesMenuItem.Click += RecentHashes_menuItem_click;
             // 
             // RSAKeyDeposuMenuItem
             // 
             RSAKeyDeposuMenuItem.Name = "RSAKeyDeposuMenuItem";
-            RSAKeyDeposuMenuItem.Size = new Size(207, 22);
+            RSAKeyDeposuMenuItem.Size = new Size(160, 22);
             RSAKeyDeposuMenuItem.Text = "RSA Key Storage";
             RSAKeyDeposuMenuItem.Click += RSAKeyStorage_menuItem_click;
             // 
             // AESKeyDeposuMenuItem
             // 
             AESKeyDeposuMenuItem.Name = "AESKeyDeposuMenuItem";
-            AESKeyDeposuMenuItem.Size = new Size(207, 22);
+            AESKeyDeposuMenuItem.Size = new Size(160, 22);
             AESKeyDeposuMenuItem.Text = "AES Key Storage";
             AESKeyDeposuMenuItem.Click += AESKeyStorage_menuItem_click;
             // 
             // textHashingToolStripMenuItem
             // 
             textHashingToolStripMenuItem.Name = "textHashingToolStripMenuItem";
-            textHashingToolStripMenuItem.Size = new Size(180, 22);
+            textHashingToolStripMenuItem.Size = new Size(160, 22);
             textHashingToolStripMenuItem.Text = "Text Hashing";
-            textHashingToolStripMenuItem.Click += textHashingToolStripMenuItem_Click;
+            textHashingToolStripMenuItem.Click += textHash_menuItem_click;
             // 
             // yardımToolStripMenuItem
             // 
@@ -207,14 +207,14 @@
             // hakkındaToolStripMenuItem
             // 
             hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
-            hakkındaToolStripMenuItem.Size = new Size(180, 22);
+            hakkındaToolStripMenuItem.Size = new Size(107, 22);
             hakkındaToolStripMenuItem.Text = "&About";
             hakkındaToolStripMenuItem.Click += aboutMenuItem_Click;
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(177, 6);
+            toolStripSeparator5.Size = new Size(104, 6);
             // 
             // splitContainer1
             // 
@@ -273,14 +273,14 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(button7);
-            splitContainer2.Panel2.Controls.Add(label8);
+            splitContainer2.Panel2.Controls.Add(privateKeyLabel);
             splitContainer2.Panel2.Controls.Add(button9);
             splitContainer2.Panel2.Controls.Add(label9);
             splitContainer2.Panel2.Controls.Add(button5);
-            splitContainer2.Panel2.Controls.Add(label6);
+            splitContainer2.Panel2.Controls.Add(publicKeyLabel);
             splitContainer2.Panel2.Controls.Add(button4);
             splitContainer2.Panel2.Controls.Add(label5);
-            splitContainer2.Panel2.Controls.Add(comboBox2);
+            splitContainer2.Panel2.Controls.Add(encryptAlgorithmBox);
             splitContainer2.Panel2.Controls.Add(button3);
             splitContainer2.Panel2.Controls.Add(label4);
             splitContainer2.Size = new Size(975, 395);
@@ -352,15 +352,16 @@
             button7.TabIndex = 18;
             button7.Text = "Decrypt and Save!";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += decrypt_click;
             // 
-            // label8
+            // privateKeyLabel
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(228, 314);
-            label8.Name = "label8";
-            label8.Size = new Size(98, 15);
-            label8.TabIndex = 17;
-            label8.Text = "Nothing Selected";
+            privateKeyLabel.AutoSize = true;
+            privateKeyLabel.Location = new Point(228, 314);
+            privateKeyLabel.Name = "privateKeyLabel";
+            privateKeyLabel.Size = new Size(98, 15);
+            privateKeyLabel.TabIndex = 17;
+            privateKeyLabel.Text = "Nothing Selected";
             // 
             // button9
             // 
@@ -371,6 +372,7 @@
             button9.TabIndex = 16;
             button9.Text = "Select Private Key!";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += openPrivateKey_click;
             // 
             // label9
             // 
@@ -391,15 +393,16 @@
             button5.TabIndex = 7;
             button5.Text = "Encrypt and Save!";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += encrypt_click;
             // 
-            // label6
+            // publicKeyLabel
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(228, 181);
-            label6.Name = "label6";
-            label6.Size = new Size(98, 15);
-            label6.TabIndex = 6;
-            label6.Text = "Nothing Selected";
+            publicKeyLabel.AutoSize = true;
+            publicKeyLabel.Location = new Point(228, 181);
+            publicKeyLabel.Name = "publicKeyLabel";
+            publicKeyLabel.Size = new Size(98, 15);
+            publicKeyLabel.TabIndex = 6;
+            publicKeyLabel.Text = "Nothing Selected";
             // 
             // button4
             // 
@@ -410,6 +413,7 @@
             button4.TabIndex = 5;
             button4.Text = "Select Public Key!";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += openPublicKey_click;
             // 
             // label5
             // 
@@ -421,19 +425,19 @@
             label5.TabIndex = 4;
             label5.Text = "Encrypt!";
             // 
-            // comboBox2
+            // encryptAlgorithmBox
             // 
-            comboBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comboBox2.BackColor = Color.WhiteSmoke;
-            comboBox2.Dock = DockStyle.Top;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "RSA", "AES", "DES" });
-            comboBox2.Location = new Point(0, 48);
-            comboBox2.Margin = new Padding(3, 2, 3, 2);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(572, 23);
-            comboBox2.TabIndex = 3;
-            comboBox2.Text = "RSA";
+            encryptAlgorithmBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            encryptAlgorithmBox.BackColor = Color.WhiteSmoke;
+            encryptAlgorithmBox.Dock = DockStyle.Top;
+            encryptAlgorithmBox.FormattingEnabled = true;
+            encryptAlgorithmBox.Items.AddRange(new object[] { "RSA", "AES" });
+            encryptAlgorithmBox.Location = new Point(0, 48);
+            encryptAlgorithmBox.Margin = new Padding(3, 2, 3, 2);
+            encryptAlgorithmBox.Name = "encryptAlgorithmBox";
+            encryptAlgorithmBox.Size = new Size(572, 23);
+            encryptAlgorithmBox.TabIndex = 3;
+            encryptAlgorithmBox.Text = "RSA";
             // 
             // button3
             // 
@@ -443,10 +447,11 @@
             button3.Location = new Point(3, 75);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(566, 51);
+            button3.Size = new Size(566, 63);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += generateRSAPair_click;
             // 
             // label4
             // 
@@ -531,5 +536,8 @@
         private ToolStripMenuItem textHashingToolStripMenuItem;
         private SaveFileDialog saveFileDialog1;
         private ToolStripMenuItem clearToolStripMenuItem;
+        private ComboBox encryptAlgorithmBox;
+        private Label publicKeyLabel;
+        private Label privateKeyLabel;
     }
 }

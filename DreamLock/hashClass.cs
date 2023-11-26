@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using System.IO;
-using HashLib;
+using HashLib;  
 using System.Security.Policy;
 using System.Drawing.Text;
 using System.Windows.Forms;
@@ -18,42 +17,35 @@ namespace DreamLock
 {
     public class hashingClass
     {
-        IDigest digest;
         hashLogClass csvManager = new hashLogClass();
 
         public string CalculateMDHashofFile(string filePath, int hashType)
         {
-
-            if (hashType == 2)
-            {
-                digest = new MD2Digest();
-
-            }
-            else if (hashType == 4)
-            {
-                digest = new MD4Digest();
-
-            }
-            else if (hashType == 5)
-            {
-                digest = new MD5Digest();
-
-            }
-            byte[] buffer = new byte[4096];
-            int bytesRead;
             using (var stream = File.OpenRead(filePath))
+            { 
 
-            {
-                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                if (hashType == 2)
                 {
-                    digest.BlockUpdate(buffer, 0, bytesRead);
+                    IHash hasher = HashFactory.Crypto.CreateMD2();
+                    HashResult r = hasher.ComputeStream(stream);
+                    return r.ToString().Replace("-", "").ToLowerInvariant();
+
                 }
+                else if (hashType == 4)
+                {
+                    IHash hasher = HashFactory.Crypto.CreateMD4();
+                    HashResult r = hasher.ComputeStream(stream);
+                    return r.ToString().Replace("-", "").ToLowerInvariant();
+                }
+                else if(hashType == 5) 
+                {
+                    IHash hasher = HashFactory.Crypto.CreateMD5();
+                    HashResult r = hasher.ComputeStream(stream);
+                    return r.ToString().Replace("-", "").ToLowerInvariant();
+                }
+           
+            return "0"; // CS8603 hayatımı bitirdi
             }
-
-            byte[] hashBytes = new byte[digest.GetDigestSize()];
-            digest.DoFinal(hashBytes, 0);
-
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
         }
         public string CalculateSHAHashofFile(string filePath, int hashType)
         {

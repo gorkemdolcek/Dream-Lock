@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace DreamLock
 {
@@ -17,6 +20,16 @@ namespace DreamLock
     {
         private string selectedFileName = "";
         private string safeSelectedFileName = "";
+        private string safePublicKeySelectedFileName = "";
+        private string PublicKeyselectedFileName = "";
+        private string safePrivateKeySelectedFileName = "";
+        private string PrivateKeyselectedFileName = "";
+        private OpenFileDialog rsaPrivateKeyOpenFileDialog = new OpenFileDialog();
+        private OpenFileDialog rsaPublicKeyOpenFileDialog = new OpenFileDialog();
+        DialogResult result;
+        DialogResult result2;
+        //suraya degisken atmaktan cigerim soldu yemin ederim
+
 
         hashLogClass csvManager = new hashLogClass();
         hashingClass hash = new hashingClass();
@@ -54,20 +67,6 @@ namespace DreamLock
         {
             Form RecentHashes = new RecentHashes();
             RecentHashes.ShowDialog(this);
-        }
-
-        private void virusTotalRecentHashes_menuItem_click(object sender, EventArgs e)
-        {
-            Form virusTotal = new VirusTotalRecentHashes();
-            virusTotal.ShowDialog(this);
-        }
-
-        private void switchToOldAlgorithms_menuItem_click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form OldAlgorithms = new OldAlgorithms();
-            OldAlgorithms.ShowDialog(this);
-            this.Close();
         }
 
         private void exit_menuItem_click(object sender, EventArgs e)
@@ -330,9 +329,90 @@ namespace DreamLock
             richTextBox1.Text = "";
         }
 
-        private void textHashingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void textHash_menuItem_click(object sender, EventArgs e)
         {
+            Form TextHashing = new TextHashing();
+            TextHashing.ShowDialog(this);
+        }
 
+        private void generateRSAPair_click(object sender, EventArgs e)
+        {
+            if (encryptAlgorithmBox.Text == "RSA")
+            {
+                var rsa = new RSACryptoServiceProvider(2048);
+                var buffer = new StringBuilder();
+                buffer.AppendLine("-----BEGIN RSA PUBLIC KEY-----");
+                buffer.AppendLine(Convert.ToBase64String(
+                rsa.ExportRSAPublicKey(),
+                Base64FormattingOptions.InsertLineBreaks));
+                buffer.AppendLine("-----END RSA PUBLIC KEY-----");
+
+                var buffer2 = new StringBuilder();
+                buffer2.AppendLine("-----BEGIN RSA PRIVATE KEY-----");
+                buffer2.AppendLine(Convert.ToBase64String(
+                rsa.ExportRSAPrivateKey(),
+                Base64FormattingOptions.InsertLineBreaks));
+                buffer2.AppendLine("-----END RSA PRIVATE KEY-----");
+
+
+                SaveFileDialog savePublicDialog = new SaveFileDialog();
+                savePublicDialog.Filter = "RSA Public Key (*.pub)|*.pub|All Files (*.*)|*.*";
+                if (savePublicDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string publicKeyPath = savePublicDialog.FileName;
+                    StreamWriter Kayit = new StreamWriter(savePublicDialog.FileName);
+                    Kayit.WriteLine(buffer);
+                    Kayit.Close();
+                }
+                SaveFileDialog savePrivateDialog = new SaveFileDialog();
+                savePrivateDialog.Filter = "RSA Private Key (*.pem)|*.pem|All Files (*.*)|*.*";
+                if (savePrivateDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string privateKeyPath = savePrivateDialog.FileName;
+                    StreamWriter Kayit = new StreamWriter(savePrivateDialog.FileName);
+                    Kayit.WriteLine(buffer2);
+                    Kayit.Close();
+                }
+            }
+
+        }
+
+        private void openPublicKey_click(object sender, EventArgs e)
+        {
+            rsaPublicKeyOpenFileDialog.Title = "Dosya Seç";
+            rsaPublicKeyOpenFileDialog.Filter = "Public Key (*.pub)|*.pub|All Files (*.*)|*.*";
+            rsaPublicKeyOpenFileDialog.RestoreDirectory = true;
+            result=rsaPublicKeyOpenFileDialog.ShowDialog(this);
+            safePublicKeySelectedFileName = rsaPublicKeyOpenFileDialog.SafeFileName;
+            PublicKeyselectedFileName = rsaPublicKeyOpenFileDialog.FileName;
+            publicKeyLabel.Text = "Selected File: " + safePublicKeySelectedFileName;
+        }
+
+        private void openPrivateKey_click(object sender, EventArgs e)
+        {
+            rsaPrivateKeyOpenFileDialog.Title = "Dosya Seç";
+            rsaPrivateKeyOpenFileDialog.Filter = "Private Key (*.pem)|*.pem|All Files (*.*)|*.*";
+            rsaPrivateKeyOpenFileDialog.RestoreDirectory = true;
+            result2=rsaPrivateKeyOpenFileDialog.ShowDialog(this);
+            safePrivateKeySelectedFileName = rsaPrivateKeyOpenFileDialog.SafeFileName;
+            PrivateKeyselectedFileName = rsaPrivateKeyOpenFileDialog.FileName;
+            privateKeyLabel.Text = "Selected File: " + safePrivateKeySelectedFileName;
+        }
+
+        private void encrypt_click(object sender, EventArgs e)
+        {
+            if (result!= DialogResult.OK)
+            {
+                MessageBox.Show("You Should Select a Public Key for Encryption!");
+            }
+        }
+
+        private void decrypt_click(object sender, EventArgs e)
+        {
+            if (result2 != DialogResult.OK)
+            {
+                MessageBox.Show("You Should Select a Private Key for Encryption!");
+            }
         }
     }
 
