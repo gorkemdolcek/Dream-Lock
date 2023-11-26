@@ -339,8 +339,7 @@ namespace DreamLock
 
         private void generateRSAPair_click(object sender, EventArgs e)
         {
-            if (encryptAlgorithmBox.Text == "RSA")
-            {
+
                 string keySize = keySizeValue.Text;
                 int keysize2 = Int32.Parse(keySize);
                 var rsa = new RSACryptoServiceProvider(keysize2);
@@ -368,7 +367,7 @@ namespace DreamLock
                 }
             }
 
-        }
+        
 
         private void openPublicKey_click(object sender, EventArgs e)
         {

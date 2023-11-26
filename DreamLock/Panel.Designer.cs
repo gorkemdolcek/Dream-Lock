@@ -67,7 +67,6 @@
             publicKeyLabel = new Label();
             button4 = new Button();
             label5 = new Label();
-            encryptAlgorithmBox = new ComboBox();
             button3 = new Button();
             label4 = new Label();
             saveFileDialog1 = new SaveFileDialog();
@@ -284,7 +283,6 @@
             splitContainer2.Panel2.Controls.Add(publicKeyLabel);
             splitContainer2.Panel2.Controls.Add(button4);
             splitContainer2.Panel2.Controls.Add(label5);
-            splitContainer2.Panel2.Controls.Add(encryptAlgorithmBox);
             splitContainer2.Panel2.Controls.Add(button3);
             splitContainer2.Panel2.Controls.Add(label4);
             splitContainer2.Size = new Size(975, 395);
@@ -351,7 +349,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(3, 79);
+            label2.Location = new Point(3, 56);
             label2.Name = "label2";
             label2.Size = new Size(69, 20);
             label2.TabIndex = 20;
@@ -363,10 +361,10 @@
             keySizeValue.BackColor = Color.WhiteSmoke;
             keySizeValue.FormattingEnabled = true;
             keySizeValue.Items.AddRange(new object[] { "4096", "2048", "512", "1024" });
-            keySizeValue.Location = new Point(78, 79);
+            keySizeValue.Location = new Point(78, 56);
             keySizeValue.Margin = new Padding(3, 2, 3, 2);
             keySizeValue.Name = "keySizeValue";
-            keySizeValue.Size = new Size(495, 23);
+            keySizeValue.Size = new Size(491, 23);
             keySizeValue.TabIndex = 19;
             keySizeValue.Text = "2048";
             // 
@@ -446,35 +444,21 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft PhagsPa", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(240, 140);
+            label5.Location = new Point(240, 137);
             label5.Name = "label5";
             label5.Size = new Size(86, 25);
             label5.TabIndex = 4;
             label5.Text = "Encrypt!";
-            // 
-            // encryptAlgorithmBox
-            // 
-            encryptAlgorithmBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            encryptAlgorithmBox.BackColor = Color.WhiteSmoke;
-            encryptAlgorithmBox.Dock = DockStyle.Top;
-            encryptAlgorithmBox.FormattingEnabled = true;
-            encryptAlgorithmBox.Items.AddRange(new object[] { "RSA", "AES" });
-            encryptAlgorithmBox.Location = new Point(0, 48);
-            encryptAlgorithmBox.Margin = new Padding(3, 2, 3, 2);
-            encryptAlgorithmBox.Name = "encryptAlgorithmBox";
-            encryptAlgorithmBox.Size = new Size(572, 23);
-            encryptAlgorithmBox.TabIndex = 3;
-            encryptAlgorithmBox.Text = "RSA";
             // 
             // button3
             // 
             button3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button3.AutoSize = true;
             button3.FlatStyle = FlatStyle.System;
-            button3.Location = new Point(3, 106);
+            button3.Location = new Point(3, 94);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(571, 36);
+            button3.Size = new Size(567, 32);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;
@@ -563,7 +547,6 @@
         private ToolStripMenuItem textHashingToolStripMenuItem;
         private SaveFileDialog saveFileDialog1;
         private ToolStripMenuItem clearToolStripMenuItem;
-        private ComboBox encryptAlgorithmBox;
         private Label publicKeyLabel;
         private Label privateKeyLabel;
         private Label label2;
