@@ -63,6 +63,21 @@ namespace DreamLock
                 return csv.GetRecords<FileRecord2>().ToList();
         }
         }
+        public void DeleteRowByKeyname(string keyName)
+        {
+            var records = ReadFromCsv();
+            var rowToDelete = records.FirstOrDefault(record => record.keyName == keyName);
 
+            if (rowToDelete != null)
+            {
+                records.Remove(rowToDelete);
+                using (StreamWriter sw = new StreamWriter(loc, false))
+                using (var csvWriter = new CsvWriter(sw, CultureInfo.InvariantCulture))
+                {
+                    csvWriter.WriteRecords(records);
+                }
+            }
+
+        }
     }
 }

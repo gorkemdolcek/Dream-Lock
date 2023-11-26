@@ -79,6 +79,7 @@
             button1.TabIndex = 1;
             button1.Text = "Delete";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += deletePairFromRSAStorage_click;
             // 
             // button2
             // 
@@ -104,8 +105,9 @@
             button4.Name = "button4";
             button4.Size = new Size(158, 45);
             button4.TabIndex = 4;
-            button4.Text = "Add From File";
+            button4.Text = "Add New Pair";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += addNewKeypair_click;
             // 
             // RSAKeyStorage
             // 
