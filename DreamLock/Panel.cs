@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace DreamLock
         private OpenFileDialog rsaPublicKeyOpenFileDialog = new OpenFileDialog();
         DialogResult result;
         DialogResult result2;
+        private string sonuc;
         //suraya degisken atmaktan cigerim soldu yemin ederim
 
 
@@ -339,24 +341,15 @@ namespace DreamLock
         {
             if (encryptAlgorithmBox.Text == "RSA")
             {
-                var rsa = new RSACryptoServiceProvider(2048);
-                var buffer = new StringBuilder();
-                buffer.AppendLine("-----BEGIN RSA PUBLIC KEY-----");
-                buffer.AppendLine(Convert.ToBase64String(
-                rsa.ExportRSAPublicKey(),
-                Base64FormattingOptions.InsertLineBreaks));
-                buffer.AppendLine("-----END RSA PUBLIC KEY-----");
-
-                var buffer2 = new StringBuilder();
-                buffer2.AppendLine("-----BEGIN RSA PRIVATE KEY-----");
-                buffer2.AppendLine(Convert.ToBase64String(
-                rsa.ExportRSAPrivateKey(),
-                Base64FormattingOptions.InsertLineBreaks));
-                buffer2.AppendLine("-----END RSA PRIVATE KEY-----");
+                string keySize = keySizeValue.Text;
+                int keysize2 = Int32.Parse(keySize);
+                var rsa = new RSACryptoServiceProvider(keysize2);
+                string buffer = rsa.ToXmlString(false);
+                string buffer2 = rsa.ToXmlString(false);
 
 
                 SaveFileDialog savePublicDialog = new SaveFileDialog();
-                savePublicDialog.Filter = "RSA Public Key (*.pub)|*.pub|All Files (*.*)|*.*";
+                savePublicDialog.Filter = "C# RSA Public Key (*.xml)|*.xml|All Files (*.*)|*.*";
                 if (savePublicDialog.ShowDialog() == DialogResult.OK)
                 {
                     string publicKeyPath = savePublicDialog.FileName;
@@ -365,7 +358,7 @@ namespace DreamLock
                     Kayit.Close();
                 }
                 SaveFileDialog savePrivateDialog = new SaveFileDialog();
-                savePrivateDialog.Filter = "RSA Private Key (*.pem)|*.pem|All Files (*.*)|*.*";
+                savePrivateDialog.Filter = "C# RSA Private Key (*.xml)|*.xml|All Files (*.*)|*.*";
                 if (savePrivateDialog.ShowDialog() == DialogResult.OK)
                 {
                     string privateKeyPath = savePrivateDialog.FileName;
@@ -380,7 +373,7 @@ namespace DreamLock
         private void openPublicKey_click(object sender, EventArgs e)
         {
             rsaPublicKeyOpenFileDialog.Title = "Dosya Seç";
-            rsaPublicKeyOpenFileDialog.Filter = "Public Key (*.pub)|*.pub|All Files (*.*)|*.*";
+            rsaPublicKeyOpenFileDialog.Filter = "C# Public Key (*.xml)|*.xml|All Files (*.*)|*.*";
             rsaPublicKeyOpenFileDialog.RestoreDirectory = true;
             result=rsaPublicKeyOpenFileDialog.ShowDialog(this);
             safePublicKeySelectedFileName = rsaPublicKeyOpenFileDialog.SafeFileName;
@@ -391,7 +384,7 @@ namespace DreamLock
         private void openPrivateKey_click(object sender, EventArgs e)
         {
             rsaPrivateKeyOpenFileDialog.Title = "Dosya Seç";
-            rsaPrivateKeyOpenFileDialog.Filter = "Private Key (*.pem)|*.pem|All Files (*.*)|*.*";
+            rsaPrivateKeyOpenFileDialog.Filter = "C# Private Key (*.xml)|*.xml|All Files (*.*)|*.*";
             rsaPrivateKeyOpenFileDialog.RestoreDirectory = true;
             result2=rsaPrivateKeyOpenFileDialog.ShowDialog(this);
             safePrivateKeySelectedFileName = rsaPrivateKeyOpenFileDialog.SafeFileName;
@@ -404,6 +397,62 @@ namespace DreamLock
             if (result!= DialogResult.OK)
             {
                 MessageBox.Show("You Should Select a Public Key for Encryption!");
+            }
+            else
+            {
+                if (System.IO.File.Exists(selectedFileName))
+                {
+                    byte[] fileData = File.ReadAllBytes(selectedFileName);
+                    string publicKeyText = File.ReadAllText(PublicKeyselectedFileName);
+                    using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
+                    {                        
+                        RSAalg.PersistKeyInCsp = false;
+                        RSAalg.FromXmlString(publicKeyText);
+                        try
+                        {
+                            Byte[] encryptedData = RSAalg.Encrypt(fileData, true);
+                            SaveFileDialog saveEncryptedDialog = new SaveFileDialog();
+                            saveEncryptedDialog.Filter = "All Files (*.*)|*.*";
+                            if (saveEncryptedDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                string encryptedFilePath = saveEncryptedDialog.FileName;
+                                File.WriteAllBytes(encryptedFilePath, encryptedData);
+                                MessageBox.Show("Success!");
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Encryption of the file failed! File size limit depends on your key size.");
+                        }
+
+                    }
+                }
+                else if (System.IO.Directory.Exists(selectedFileName))
+                {
+                    string[] fileEntries = System.IO.Directory.GetFiles(selectedFileName);
+                    foreach (string fileName in fileEntries)
+                    {
+                        byte[] fileData = File.ReadAllBytes(fileName);
+                        string publicKeyText = File.ReadAllText(PublicKeyselectedFileName);
+                        using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
+                        {
+                            RSAalg.PersistKeyInCsp = false;
+                            RSAalg.FromXmlString(publicKeyText);
+                            try
+                            {
+                                Byte[] encryptedData = RSAalg.Encrypt(fileData, true);
+                                string encryptedFilePath = fileName+".enc";
+                                File.WriteAllBytes(encryptedFilePath, encryptedData);
+                                MessageBox.Show("Successfully encrypted: "+encryptedFilePath);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Encryption of this file failed: "+fileName);
+                            }
+
+                        }
+                    }
+                }
             }
         }
 

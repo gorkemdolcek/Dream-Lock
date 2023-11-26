@@ -57,6 +57,8 @@
             button2 = new Button();
             hashItButton = new Button();
             label3 = new Label();
+            label2 = new Label();
+            keySizeValue = new ComboBox();
             button7 = new Button();
             privateKeyLabel = new Label();
             button9 = new Button();
@@ -272,6 +274,8 @@
             // 
             // splitContainer2.Panel2
             // 
+            splitContainer2.Panel2.Controls.Add(label2);
+            splitContainer2.Panel2.Controls.Add(keySizeValue);
             splitContainer2.Panel2.Controls.Add(button7);
             splitContainer2.Panel2.Controls.Add(privateKeyLabel);
             splitContainer2.Panel2.Controls.Add(button9);
@@ -342,6 +346,29 @@
             label3.TabIndex = 0;
             label3.Text = "HASH IT";
             label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(3, 79);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 20);
+            label2.TabIndex = 20;
+            label2.Text = "Key Size:";
+            // 
+            // keySizeValue
+            // 
+            keySizeValue.AutoCompleteMode = AutoCompleteMode.Suggest;
+            keySizeValue.BackColor = Color.WhiteSmoke;
+            keySizeValue.FormattingEnabled = true;
+            keySizeValue.Items.AddRange(new object[] { "4096", "2048", "512", "1024" });
+            keySizeValue.Location = new Point(78, 79);
+            keySizeValue.Margin = new Padding(3, 2, 3, 2);
+            keySizeValue.Name = "keySizeValue";
+            keySizeValue.Size = new Size(495, 23);
+            keySizeValue.TabIndex = 19;
+            keySizeValue.Text = "2048";
             // 
             // button7
             // 
@@ -444,10 +471,10 @@
             button3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button3.AutoSize = true;
             button3.FlatStyle = FlatStyle.System;
-            button3.Location = new Point(3, 75);
+            button3.Location = new Point(3, 106);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(566, 63);
+            button3.Size = new Size(570, 34);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;
@@ -539,5 +566,7 @@
         private ComboBox encryptAlgorithmBox;
         private Label publicKeyLabel;
         private Label privateKeyLabel;
+        private Label label2;
+        private ComboBox keySizeValue;
     }
 }
