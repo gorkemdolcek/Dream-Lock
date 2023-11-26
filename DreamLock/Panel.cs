@@ -30,10 +30,12 @@ namespace DreamLock
         DialogResult result;
         DialogResult result2;
         private string sonuc;
+        rsaKeyStorageManager csvManager2 = new rsaKeyStorageManager();
         //suraya degisken atmaktan cigerim soldu yemin ederim
 
 
         hashLogClass csvManager = new hashLogClass();
+
         hashingClass hash = new hashingClass();
         public Panel()
         {
@@ -41,15 +43,10 @@ namespace DreamLock
             splitContainer1 = new SplitContainer();
             splitContainer1.Orientation = Orientation.Vertical;
         }
-
-        private void AESKeyStorage_menuItem_click(object sender, EventArgs e)
-        {
-            Form AESKeyStorage = new AESKeyStorage();
-            AESKeyStorage.ShowDialog(this);
-        }
-
         private void RSAKeyStorage_menuItem_click(object sender, EventArgs e)
         {
+            rsaKeyStorageManager csvManager3= new rsaKeyStorageManager();
+            csvManager3.checkdbFile();
             Form RsaKeyStorage = new RSAKeyStorage();
             RsaKeyStorage.ShowDialog(this);
         }
@@ -355,7 +352,14 @@ namespace DreamLock
                     StreamWriter Kayit = new StreamWriter(savePublicDialog.FileName);
                     Kayit.WriteLine(buffer);
                     Kayit.Close();
+                if (storageCheckbox.Checked)
+                {
+                    rsaKeyStorageManager csvManager2 = new rsaKeyStorageManager();
+                    csvManager2.checkdbFile();
+                    csvManager2.WriteToCsv("Public", Path.GetFileName(savePublicDialog.FileName), savePublicDialog.FileName, DateTime.Now);
+
                 }
+            }
                 SaveFileDialog savePrivateDialog = new SaveFileDialog();
                 savePrivateDialog.Filter = "C# RSA Private Key (*.xml)|*.xml|All Files (*.*)|*.*";
                 if (savePrivateDialog.ShowDialog() == DialogResult.OK)
@@ -364,7 +368,14 @@ namespace DreamLock
                     StreamWriter Kayit = new StreamWriter(savePrivateDialog.FileName);
                     Kayit.WriteLine(buffer2);
                     Kayit.Close();
+                if (storageCheckbox.Checked)
+                {
+                    rsaKeyStorageManager csvManager2 = new rsaKeyStorageManager();
+                    csvManager2.checkdbFile();
+                    csvManager2.WriteToCsv("Private", Path.GetFileName(savePrivateDialog.FileName), savePrivateDialog.FileName, DateTime.Now);
+
                 }
+            }
             }
 
            

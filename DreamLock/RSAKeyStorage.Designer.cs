@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RSAKeyStorage));
-            listView1 = new ListView();
+            keyList = new ListView();
             keyTypeHeader = new ColumnHeader();
             keyNameHeader = new ColumnHeader();
             keySavedLocationHeader = new ColumnHeader();
@@ -40,15 +40,16 @@
             button4 = new Button();
             SuspendLayout();
             // 
-            // listView1
+            // keyList
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { keyTypeHeader, keyNameHeader, keySavedLocationHeader, keyCreationDate });
-            listView1.Location = new Point(12, 12);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(653, 260);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            keyList.Columns.AddRange(new ColumnHeader[] { keyTypeHeader, keyNameHeader, keySavedLocationHeader, keyCreationDate });
+            keyList.Location = new Point(12, 12);
+            keyList.Name = "keyList";
+            keyList.Size = new Size(653, 260);
+            keyList.TabIndex = 0;
+            keyList.UseCompatibleStateImageBehavior = false;
+            keyList.View = View.Details;
+            keyList.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // keyTypeHeader
             // 
@@ -115,7 +116,7 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(listView1);
+            Controls.Add(keyList);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RSAKeyStorage";
             Text = "DreamLock RSA Key Storage";
@@ -133,5 +134,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private ListView keyList;
     }
 }

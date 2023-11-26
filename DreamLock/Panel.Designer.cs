@@ -56,7 +56,7 @@
             button2 = new Button();
             hashItButton = new Button();
             label3 = new Label();
-            checkBox1 = new CheckBox();
+            storageCheckbox = new CheckBox();
             label2 = new Label();
             keySizeValue = new ComboBox();
             button7 = new Button();
@@ -173,21 +173,21 @@
             // RecentHashesMenuItem
             // 
             RecentHashesMenuItem.Name = "RecentHashesMenuItem";
-            RecentHashesMenuItem.Size = new Size(180, 22);
+            RecentHashesMenuItem.Size = new Size(160, 22);
             RecentHashesMenuItem.Text = "&Recent Hashes";
             RecentHashesMenuItem.Click += RecentHashes_menuItem_click;
             // 
             // RSAKeyDeposuMenuItem
             // 
             RSAKeyDeposuMenuItem.Name = "RSAKeyDeposuMenuItem";
-            RSAKeyDeposuMenuItem.Size = new Size(180, 22);
+            RSAKeyDeposuMenuItem.Size = new Size(160, 22);
             RSAKeyDeposuMenuItem.Text = "RSA Key Storage";
             RSAKeyDeposuMenuItem.Click += RSAKeyStorage_menuItem_click;
             // 
             // textHashingToolStripMenuItem
             // 
             textHashingToolStripMenuItem.Name = "textHashingToolStripMenuItem";
-            textHashingToolStripMenuItem.Size = new Size(180, 22);
+            textHashingToolStripMenuItem.Size = new Size(160, 22);
             textHashingToolStripMenuItem.Text = "Text Hashing";
             textHashingToolStripMenuItem.Click += textHash_menuItem_click;
             // 
@@ -266,7 +266,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(checkBox1);
+            splitContainer2.Panel2.Controls.Add(storageCheckbox);
             splitContainer2.Panel2.Controls.Add(label2);
             splitContainer2.Panel2.Controls.Add(keySizeValue);
             splitContainer2.Panel2.Controls.Add(button7);
@@ -339,15 +339,15 @@
             label3.Text = "HASH IT";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // checkBox1
+            // storageCheckbox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(3, 79);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(107, 19);
-            checkBox1.TabIndex = 21;
-            checkBox1.Text = "Save to Storage";
-            checkBox1.UseVisualStyleBackColor = true;
+            storageCheckbox.AutoSize = true;
+            storageCheckbox.Location = new Point(3, 79);
+            storageCheckbox.Name = "storageCheckbox";
+            storageCheckbox.Size = new Size(107, 19);
+            storageCheckbox.TabIndex = 21;
+            storageCheckbox.Text = "Save to Storage";
+            storageCheckbox.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -457,12 +457,11 @@
             // button3
             // 
             button3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button3.AutoSize = true;
             button3.FlatStyle = FlatStyle.System;
             button3.Location = new Point(3, 103);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(567, 34);
+            button3.Size = new Size(566, 32);
             button3.TabIndex = 2;
             button3.Text = "Generate Pair! (Public - Private)";
             button3.UseVisualStyleBackColor = true;
@@ -553,6 +552,6 @@
         private Label privateKeyLabel;
         private Label label2;
         private ComboBox keySizeValue;
-        private CheckBox checkBox1;
+        private CheckBox storageCheckbox;
     }
 }
