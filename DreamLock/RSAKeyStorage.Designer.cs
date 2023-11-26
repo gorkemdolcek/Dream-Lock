@@ -89,6 +89,7 @@
             button2.TabIndex = 2;
             button2.Text = "Open Key Location";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += openLocationOfKey_click;
             // 
             // button3
             // 
@@ -98,6 +99,7 @@
             button3.TabIndex = 3;
             button3.Text = "Export Key to New Location";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += exportKeyToNewLocation_click;
             // 
             // button4
             // 

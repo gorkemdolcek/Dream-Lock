@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -92,7 +93,7 @@ namespace DreamLock
         {
             rsaKeyStorageManager csvManager3 = new rsaKeyStorageManager();
             List<FileRecord2> readRecords = csvManager3.ReadFromCsv();
-            foreach(var record in  readRecords)
+            foreach (var record in readRecords)
             {
                 try
                 {
@@ -114,6 +115,48 @@ namespace DreamLock
                 item2.SubItems.Add(record.keySavedLocation);
                 item2.SubItems.Add(record.keyCreationDate);
                 keyList.Items.Add(item2);
+            }
+
+        }
+
+        private void exportKeyToNewLocation_click(object sender, EventArgs e)
+        {
+            string location = keyList.SelectedItems[0].SubItems[2].Text;
+            string fileContent;
+            try { 
+            using (StreamReader sr = new StreamReader(location))
+            {
+                fileContent = sr.ReadToEnd();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "C# RSA Key (*.xml)|*.xml|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Dosyayı Kaydet";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string savePath = saveFileDialog.FileName;
+                        using (StreamWriter sw = new StreamWriter(savePath))
+                        {
+                            sw.Write(fileContent);
+                        }
+
+                        MessageBox.Show("Success.");
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("This key is deleted or corrupted.");
+            }
+        }
+
+        private void openLocationOfKey_click(object sender, EventArgs e)
+        {
+            try { 
+            string location = Path.GetDirectoryName(keyList.SelectedItems[0].SubItems[2].Text);
+            Process.Start(location);
+            }
+            catch
+            {
+                MessageBox.Show("Acces Denied. You should start with admin rights for this.");
             }
 
         }
