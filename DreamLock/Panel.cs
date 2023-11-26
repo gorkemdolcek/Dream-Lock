@@ -345,7 +345,7 @@ namespace DreamLock
                 int keysize2 = Int32.Parse(keySize);
                 var rsa = new RSACryptoServiceProvider(keysize2);
                 string buffer = rsa.ToXmlString(false);
-                string buffer2 = rsa.ToXmlString(false);
+                string buffer2 = rsa.ToXmlString(true);
 
 
                 SaveFileDialog savePublicDialog = new SaveFileDialog();
@@ -460,7 +460,70 @@ namespace DreamLock
         {
             if (result2 != DialogResult.OK)
             {
-                MessageBox.Show("You Should Select a Private Key for Encryption!");
+                MessageBox.Show("You Should Select a Private Key for Decryption!");
+            }
+            else
+            {
+                if (System.IO.File.Exists(selectedFileName))
+                {
+                    byte[] fileData = File.ReadAllBytes(selectedFileName);
+                    string privateKeyText = File.ReadAllText(PrivateKeyselectedFileName);
+                    using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
+                    {
+                        RSAalg.PersistKeyInCsp = false;
+                        RSAalg.FromXmlString(privateKeyText);
+                        try
+                        {
+                            Byte[] encryptedData = RSAalg.Decrypt(fileData, true);
+                            SaveFileDialog saveEncryptedDialog = new SaveFileDialog();
+                            saveEncryptedDialog.Filter = "All Files (*.*)|*.*";
+                            if (saveEncryptedDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                string encryptedFilePath = saveEncryptedDialog.FileName;
+                                File.WriteAllBytes(encryptedFilePath, encryptedData);
+                                MessageBox.Show("Success!");
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Decryption of the file failed! Check your private key.");
+                        }
+
+                    }
+                }
+                else if (System.IO.Directory.Exists(selectedFileName))
+                {
+                    string[] fileEntries = System.IO.Directory.GetFiles(selectedFileName);
+                    string privateKeyText = File.ReadAllText(PrivateKeyselectedFileName);
+                    int k = 0;
+                    foreach (string fileName in fileEntries)
+                    {
+                        if (fileName.EndsWith(".enc")) {
+                            k++;
+                        byte[] fileData = File.ReadAllBytes(fileName);
+                        using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
+                        {
+                            RSAalg.FromXmlString(privateKeyText);
+                            try
+                            {
+                                Byte[] encryptedData = RSAalg.Decrypt(fileData, true);
+                                string encryptedFilePath = fileName + ".decrypted";
+                                File.WriteAllBytes(encryptedFilePath, encryptedData);
+                                MessageBox.Show("Successfully decrypted: " + encryptedFilePath);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Decryption of this file failed: " + fileName);
+                            }
+                            }
+                        }
+
+                    }
+                    if (k == 0)
+                    {
+                        MessageBox.Show("There is no file for decryption! Check your '.enc' files.");
+                    }
+                }
             }
         }
     }
