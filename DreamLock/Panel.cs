@@ -45,7 +45,8 @@ namespace DreamLock
         }
         private void RSAKeyStorage_menuItem_click(object sender, EventArgs e)
         {
-            rsaKeyStorageManager csvManager3= new rsaKeyStorageManager();
+            helpLabel.Text = "You've opened the RSA Storage menu. Here, you can access all of your keys.";
+            rsaKeyStorageManager csvManager3 = new rsaKeyStorageManager();
             csvManager3.checkdbFile();
             Form RsaKeyStorage = new RSAKeyStorage();
             RsaKeyStorage.ShowDialog(this);
@@ -64,6 +65,7 @@ namespace DreamLock
 
         private void RecentHashes_menuItem_click(object sender, EventArgs e)
         {
+            helpLabel.Text = "You've opened the Recent Hashes menu. Here, you can access all your hashing history.";
             Form RecentHashes = new RecentHashes();
             RecentHashes.ShowDialog(this);
         }
@@ -83,6 +85,7 @@ namespace DreamLock
             safeSelectedFileName = openFileDialog1.SafeFileName;
             selectedFileName = openFileDialog1.FileName;
             label1.Text = "Selected File: " + safeSelectedFileName;
+            helpLabel.Text = "You selected this file: " + safeSelectedFileName + " Now, you can hash or encrypt it.";
 
         }
 
@@ -92,6 +95,8 @@ namespace DreamLock
             folderBrowserDialog1.ShowDialog(this);
             selectedFileName = folderBrowserDialog1.SelectedPath;
             label1.Text = "Selected Folder: " + selectedFileName;
+            helpLabel.Text = "You have selected this folder: " + selectedFileName + " When you operate with this folder, the operation will be applied to all files in the folder. ";
+
         }
 
 
@@ -104,6 +109,7 @@ namespace DreamLock
                     string md2Hash = hash.CalculateMDHashofFile(selectedFileName, 2);
                     richTextBox1.Text += "File: " + safeSelectedFileName + " MD2: " + md2Hash + "\n";
                     csvManager.WriteToCsv(safeSelectedFileName, "MD2", md2Hash, DateTime.Now);
+
 
                 }
                 else if (hashComboBox.Text == "MD4")
@@ -184,6 +190,7 @@ namespace DreamLock
                     richTextBox1.Text += "File: " + safeSelectedFileName + " Whirlpool: " + whirlpoolHash + "\n";
                     csvManager.WriteToCsv(safeSelectedFileName, "Whirlpool", whirlpoolHash, DateTime.Now);
                 }
+                helpLabel.Text = "You have hashed: " + safeSelectedFileName + " with " + hashComboBox.Text + " algorithm!";
             }
             else if (System.IO.Directory.Exists(selectedFileName))
             {
@@ -298,11 +305,12 @@ namespace DreamLock
                         sw.Write(richTextBox1.Text);
                     }
 
-                    MessageBox.Show("Dosya başarıyla kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sucessfull!", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    helpLabel.Text = "You saved all logs to " + saveFileDialog1.FileName + "\n";
                 }
                 catch (Exception ex) //burda niye exception var???????????
                 {// he tamam zorunluymus
-                    MessageBox.Show("Dosya kaydetme hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -313,45 +321,52 @@ namespace DreamLock
             if (System.IO.File.Exists(selectedFileName))
             {
                 richTextBox1.Text += hash.hashAll(selectedFileName, safeSelectedFileName);
+                helpLabel.Text = "The operation has been completed with all hashing types for " + safeSelectedFileName + ".";
+
             }
             else if (System.IO.Directory.Exists(selectedFileName))
             {
                 string[] fileEntries = System.IO.Directory.GetFiles(selectedFileName);
                 foreach (string fileName in fileEntries)
                     richTextBox1.Text += hash.hashAll(fileName, fileName);
+                helpLabel.Text = "The operation has been performed with all hashing types for all files in the folder.";
+
             }
 
         }
 
         private void clear_menuItem_click(object sender, EventArgs e)
         {
+
             richTextBox1.Text = "";
+            helpLabel.Text = "All logs are cleared.";
         }
 
         private void textHash_menuItem_click(object sender, EventArgs e)
         {
+            helpLabel.Text = "You've opened the Text Hashing menu. Here, you can hash all texts.";
             Form TextHashing = new TextHashing();
             TextHashing.ShowDialog(this);
         }
 
         private void generateRSAPair_click(object sender, EventArgs e)
         {
+            helpLabel.Text = "Now, you are generating encryption pairs for RSA encryption. These pairs consist of two keys: the Public key, used for encryption, and the Private key, used for decryption.";
+            string keySize = keySizeValue.Text;
+            int keysize2 = Int32.Parse(keySize);
+            var rsa = new RSACryptoServiceProvider(keysize2);
+            string buffer = rsa.ToXmlString(false);
+            string buffer2 = rsa.ToXmlString(true);
 
-                string keySize = keySizeValue.Text;
-                int keysize2 = Int32.Parse(keySize);
-                var rsa = new RSACryptoServiceProvider(keysize2);
-                string buffer = rsa.ToXmlString(false);
-                string buffer2 = rsa.ToXmlString(true);
 
-
-                SaveFileDialog savePublicDialog = new SaveFileDialog();
-                savePublicDialog.Filter = "C# RSA Public Key (*.xml)|*.xml|All Files (*.*)|*.*";
-                if (savePublicDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string publicKeyPath = savePublicDialog.FileName;
-                    StreamWriter Kayit = new StreamWriter(savePublicDialog.FileName);
-                    Kayit.WriteLine(buffer);
-                    Kayit.Close();
+            SaveFileDialog savePublicDialog = new SaveFileDialog();
+            savePublicDialog.Filter = "C# RSA Public Key (*.xml)|*.xml|All Files (*.*)|*.*";
+            if (savePublicDialog.ShowDialog() == DialogResult.OK)
+            {
+                string publicKeyPath = savePublicDialog.FileName;
+                StreamWriter Kayit = new StreamWriter(savePublicDialog.FileName);
+                Kayit.WriteLine(buffer);
+                Kayit.Close();
                 if (storageCheckbox.Checked)
                 {
                     rsaKeyStorageManager csvManager2 = new rsaKeyStorageManager();
@@ -360,14 +375,14 @@ namespace DreamLock
 
                 }
             }
-                SaveFileDialog savePrivateDialog = new SaveFileDialog();
-                savePrivateDialog.Filter = "C# RSA Private Key (*.xml)|*.xml|All Files (*.*)|*.*";
-                if (savePrivateDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string privateKeyPath = savePrivateDialog.FileName;
-                    StreamWriter Kayit = new StreamWriter(savePrivateDialog.FileName);
-                    Kayit.WriteLine(buffer2);
-                    Kayit.Close();
+            SaveFileDialog savePrivateDialog = new SaveFileDialog();
+            savePrivateDialog.Filter = "C# RSA Private Key (*.xml)|*.xml|All Files (*.*)|*.*";
+            if (savePrivateDialog.ShowDialog() == DialogResult.OK)
+            {
+                string privateKeyPath = savePrivateDialog.FileName;
+                StreamWriter Kayit = new StreamWriter(savePrivateDialog.FileName);
+                Kayit.WriteLine(buffer2);
+                Kayit.Close();
                 if (storageCheckbox.Checked)
                 {
                     rsaKeyStorageManager csvManager2 = new rsaKeyStorageManager();
@@ -376,16 +391,16 @@ namespace DreamLock
 
                 }
             }
-            }
+        }
 
-           
+
 
         private void openPublicKey_click(object sender, EventArgs e)
         {
             rsaPublicKeyOpenFileDialog.Title = "Dosya Seç";
             rsaPublicKeyOpenFileDialog.Filter = "C# Public Key (*.xml)|*.xml|All Files (*.*)|*.*";
             rsaPublicKeyOpenFileDialog.RestoreDirectory = true;
-            result=rsaPublicKeyOpenFileDialog.ShowDialog(this);
+            result = rsaPublicKeyOpenFileDialog.ShowDialog(this);
             safePublicKeySelectedFileName = rsaPublicKeyOpenFileDialog.SafeFileName;
             PublicKeyselectedFileName = rsaPublicKeyOpenFileDialog.FileName;
             publicKeyLabel.Text = "Selected File: " + safePublicKeySelectedFileName;
@@ -396,7 +411,7 @@ namespace DreamLock
             rsaPrivateKeyOpenFileDialog.Title = "Dosya Seç";
             rsaPrivateKeyOpenFileDialog.Filter = "C# Private Key (*.xml)|*.xml|All Files (*.*)|*.*";
             rsaPrivateKeyOpenFileDialog.RestoreDirectory = true;
-            result2=rsaPrivateKeyOpenFileDialog.ShowDialog(this);
+            result2 = rsaPrivateKeyOpenFileDialog.ShowDialog(this);
             safePrivateKeySelectedFileName = rsaPrivateKeyOpenFileDialog.SafeFileName;
             PrivateKeyselectedFileName = rsaPrivateKeyOpenFileDialog.FileName;
             privateKeyLabel.Text = "Selected File: " + safePrivateKeySelectedFileName;
@@ -404,7 +419,7 @@ namespace DreamLock
 
         private void encrypt_click(object sender, EventArgs e)
         {
-            if (result!= DialogResult.OK)
+            if (result != DialogResult.OK)
             {
                 MessageBox.Show("You Should Select a Public Key for Encryption!");
             }
@@ -415,7 +430,7 @@ namespace DreamLock
                     byte[] fileData = File.ReadAllBytes(selectedFileName);
                     string publicKeyText = File.ReadAllText(PublicKeyselectedFileName);
                     using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
-                    {                        
+                    {
                         RSAalg.PersistKeyInCsp = false;
                         RSAalg.FromXmlString(publicKeyText);
                         try
@@ -451,13 +466,13 @@ namespace DreamLock
                             try
                             {
                                 Byte[] encryptedData = RSAalg.Encrypt(fileData, true);
-                                string encryptedFilePath = fileName+".enc";
+                                string encryptedFilePath = fileName + ".enc";
                                 File.WriteAllBytes(encryptedFilePath, encryptedData);
-                                MessageBox.Show("Successfully encrypted: "+encryptedFilePath);
+                                MessageBox.Show("Successfully encrypted: " + encryptedFilePath);
                             }
                             catch
                             {
-                                MessageBox.Show("Encryption of this file failed: "+fileName);
+                                MessageBox.Show("Encryption of this file failed: " + fileName);
                             }
 
                         }
@@ -508,23 +523,24 @@ namespace DreamLock
                     int k = 0;
                     foreach (string fileName in fileEntries)
                     {
-                        if (fileName.EndsWith(".enc")) {
-                            k++;
-                        byte[] fileData = File.ReadAllBytes(fileName);
-                        using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
+                        if (fileName.EndsWith(".enc"))
                         {
-                            RSAalg.FromXmlString(privateKeyText);
-                            try
+                            k++;
+                            byte[] fileData = File.ReadAllBytes(fileName);
+                            using (RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider())
                             {
-                                Byte[] encryptedData = RSAalg.Decrypt(fileData, true);
-                                string encryptedFilePath = fileName + ".decrypted";
-                                File.WriteAllBytes(encryptedFilePath, encryptedData);
-                                MessageBox.Show("Successfully decrypted: " + encryptedFilePath);
-                            }
-                            catch
-                            {
-                                MessageBox.Show("Decryption of this file failed: " + fileName);
-                            }
+                                RSAalg.FromXmlString(privateKeyText);
+                                try
+                                {
+                                    Byte[] encryptedData = RSAalg.Decrypt(fileData, true);
+                                    string encryptedFilePath = fileName + ".decrypted";
+                                    File.WriteAllBytes(encryptedFilePath, encryptedData);
+                                    MessageBox.Show("Successfully decrypted: " + encryptedFilePath);
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Decryption of this file failed: " + fileName);
+                                }
                             }
                         }
 
@@ -535,6 +551,11 @@ namespace DreamLock
                     }
                 }
             }
+        }
+
+        private void storageCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            helpLabel.Text = "Now that you have checked the 'Save Storage' checkbox, when you generate a new RSA pair, DreamLock will save it in your RSA Storage";
         }
     }
 

@@ -70,6 +70,7 @@
             button3 = new Button();
             label4 = new Label();
             saveFileDialog1 = new SaveFileDialog();
+            helpLabel = new Label();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -348,6 +349,7 @@
             storageCheckbox.TabIndex = 21;
             storageCheckbox.Text = "Save to Storage";
             storageCheckbox.UseVisualStyleBackColor = true;
+            storageCheckbox.CheckedChanged += storageCheckbox_CheckedChanged;
             // 
             // label2
             // 
@@ -478,12 +480,23 @@
             label4.Text = "ENCRYPT - DECRYPT";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // helpLabel
+            // 
+            helpLabel.AutoEllipsis = true;
+            helpLabel.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            helpLabel.Location = new Point(4, 477);
+            helpLabel.Name = "helpLabel";
+            helpLabel.Size = new Size(970, 91);
+            helpLabel.TabIndex = 4;
+            helpLabel.Text = "DreamLock will help you with hashing, logging, and encryption. When you are using the app, this text will assist you. Enjoy!\r\n\r\nDon't forget to check the special menu!";
+            // 
             // Panel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(975, 476);
+            ClientSize = new Size(975, 567);
+            Controls.Add(helpLabel);
             Controls.Add(splitContainer1);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -553,5 +566,6 @@
         private Label label2;
         private ComboBox keySizeValue;
         private CheckBox storageCheckbox;
+        private Label helpLabel;
     }
 }
