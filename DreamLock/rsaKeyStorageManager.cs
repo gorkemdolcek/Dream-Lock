@@ -37,7 +37,7 @@ namespace DreamLock
 
         public void checkdbFile()
         {
-            if (!System.IO.File.Exists("db/rsadb.csv"))//if not icat edilmeden once insanlar
+            if (!System.IO.File.Exists("db/rsadb.csv"))
             {
                 System.IO.Directory.CreateDirectory("./db/");
                 using (StreamWriter w = File.AppendText(".\\db\\rsadb.csv"))
