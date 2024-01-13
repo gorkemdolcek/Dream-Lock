@@ -37,7 +37,7 @@ namespace DreamLock
                     HashResult r = hasher.ComputeStream(stream);
                     return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
-                else if(hashType == 5) 
+                else if(hashType == 5)   
                 {
                     IHash hasher = HashFactory.Crypto.CreateMD5();
                     HashResult r = hasher.ComputeStream(stream);
@@ -58,6 +58,12 @@ namespace DreamLock
                         byte[] hash = sha1.ComputeHash(stream);
                         return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
+                }
+                else if (hashType == 224)
+                {
+                    IHash hasher = HashFactory.Crypto.CreateSHA224();
+                    HashResult r = hasher.ComputeStream(stream);
+                    return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
                 else if (hashType == 256)
                 {
@@ -82,12 +88,6 @@ namespace DreamLock
                         byte[] hash = sha512.ComputeHash(stream);
                         return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
-                }
-                else if (hashType == 224)
-                {
-                    IHash hasher = HashFactory.Crypto.CreateSHA224();
-                    HashResult r = hasher.ComputeStream(stream);
-                    return r.ToString().Replace("-", "").ToLowerInvariant();
                 }
             }
             return "0";

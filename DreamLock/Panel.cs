@@ -337,7 +337,6 @@ namespace DreamLock
 
         private void clear_menuItem_click(object sender, EventArgs e)
         {
-
             richTextBox1.Text = "";
             helpLabel.Text = "All logs are cleared.";
         }
@@ -395,7 +394,7 @@ namespace DreamLock
 
 
 
-        private void openPublicKey_click(object sender, EventArgs e)
+        private void openPublicKey_click(object sender, EventArgs e)    
         {
             rsaPublicKeyOpenFileDialog.Title = "Dosya Seç";
             rsaPublicKeyOpenFileDialog.Filter = "C# Public Key (*.xml)|*.xml|All Files (*.*)|*.*";

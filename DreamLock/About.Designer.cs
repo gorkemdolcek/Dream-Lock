@@ -98,9 +98,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(114, 305);
             label5.Name = "label5";
-            label5.Size = new Size(277, 30);
+            label5.Size = new Size(277, 15);
             label5.TabIndex = 5;
-            label5.Text = "Öğrenciler tarafından proje kapsamında yapılmıştır.\r\nHiçbir hakkı saklı falan değildir.\r\n";
+            label5.Text = "Öğrenciler tarafından proje kapsamında yapılmıştır.\r\n";
             label5.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label6

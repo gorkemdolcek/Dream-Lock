@@ -37,7 +37,7 @@ namespace DreamLock
 
         public static void checkdbFile()
         {
-            if (!System.IO.File.Exists("db/hashdb.csv"))//if not icat edilmeden once insanlar
+            if (!System.IO.File.Exists("db/hashdb.csv"))
             {
                 System.IO.Directory.CreateDirectory("./db/");
                 using (StreamWriter w = File.AppendText(".\\db\\hashdb.csv"))
@@ -48,11 +48,11 @@ namespace DreamLock
             }
         }
 
-    public void WriteToCsv(string hashName,string Hash, string Hash2, DateTime DateTime)
+    public void WriteToCsv(string fileName,string hashType, string hash, DateTime DateTime)
         {
             using (StreamWriter sw = new StreamWriter(loc, append:true))
             {
-                sw.WriteLine(hashName+","+Hash+","+Hash2+","+DateTime.Now.ToString());
+                sw.WriteLine(fileName+","+hashType+","+hash+","+DateTime.Now.ToString());
             }
         }
         public List<FileRecord> ReadFromCsv()
